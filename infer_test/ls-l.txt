@@ -1,0 +1,430 @@
+合計 57796
+drwxr-xr-x  3 root root         4096  4月 22  2014 2013.com.canonical.certification:checkbox
+drwxr-xr-x  3 root root         4096  4月 22  2014 2013.com.canonical.certification:plainbox-resources
+drwxr-xr-x  2 root root         4096  1月  6 15:58 NetworkManager
+drwxr-xr-x  5 root root         4096  4月 22  2014 X11
+drwxr-xr-x  2 root root         4096  1月  6 15:58 accountsservice
+drwxr-xr-x  3 root root         4096  4月 22  2014 aisleriot
+drwxr-xr-x  2 root root         4096  4月 22  2014 apg
+drwxr-xr-x  4 root root         4096  1月  6 15:58 apt
+drwxr-xr-x  2 root root        12288  4月 22  2014 aspell
+drwxr-xr-x  2 root root         4096  4月 22  2014 at-spi2-core
+drwxr-xr-x  2 root root         4096  4月 22  2014 avahi
+drwxr-xr-x  3 root root         4096  4月 22  2014 brasero3-1
+drwxr-xr-x  3 root root         4096  4月 22  2014 checkbox-gui
+drwxr-xr-x  2 root root         4096  4月 22  2014 colord
+-rwxr-xr-x  1 root root         3274  4月  3  2014 command-not-found
+drwxr-xr-x  2 root root         4096  4月 22  2014 compat-ld
+drwxr-xr-x  3 root root         4096  1月  6 16:32 compiz
+drwxr-xr-x  3 root root         4096  4月 22  2014 compizconfig
+drwxr-xr-x  2 root root         4096  1月 15 14:26 coreutils
+drwxr-xr-x 10 root root         4096  4月 22  2014 cups
+drwxr-xr-x  2 root root         4096  1月  6 15:58 dbus-1.0
+drwxr-xr-x  2 root root         4096  4月 22  2014 dconf
+drwxr-xr-x  4 root root         4096  4月 22  2014 debug
+drwxr-xr-x  2 root root         4096  1月  6 16:38 docker.io
+drwxr-xr-x  4 root root         4096  4月 22  2014 dpkg
+drwxr-xr-x  2 root root         4096  4月 19  2014 eject
+drwxr-xr-x  3 root root         4096  1月  6 16:18 emacs
+drwxr-xr-x  3 root root         4096  1月  6 16:18 emacsen-common
+drwxr-xr-x  2 root root         4096  1月  6 15:59 empathy
+drwxr-xr-x  4 root root         4096  4月 22  2014 eog
+drwxr-xr-x  3 root root         4096  1月  6 15:59 evince
+drwxr-xr-x  2 root root         4096  1月  6 15:59 evolution
+drwxr-xr-x  6 root root         4096  4月 22  2014 evolution-data-server
+drwxr-xr-x  3 root root         4096  4月 22  2014 file-roller
+drwxr-xr-x  7 root root         4096  2月  3 11:14 firefox
+drwxr-xr-x  6 root root         4096  4月 22  2014 firefox-addons
+drwxr-xr-x  3 root root         4096  4月  8  2014 gcc
+drwxr-xr-x  2 root root         4096  4月 22  2014 gcr
+drwxr-xr-x  2 root root         4096  4月 22  2014 geoclue
+drwxr-xr-x  2 root root         4096  1月  6 15:59 gettext
+drwxr-xr-x  3 root root         4096  4月 22  2014 ghostscript
+drwxr-xr-x  2 root root         4096  1月 22 09:04 girepository-1.0
+drwxr-xr-x  3 root root        20480  1月 15 14:26 git-core
+drwxr-xr-x  2 root root         4096  4月 22  2014 glib-networking
+drwxr-xr-x  3 root root         4096  1月  6 15:58 gnome-bluetooth
+drwxr-xr-x  2 root root         4096  4月 22  2014 gnome-contacts
+drwxr-xr-x  3 root root         4096  4月 22  2014 gnome-keyring
+drwxr-xr-x  2 root root         4096  4月 22  2014 gnome-screensaver
+drwxr-xr-x  2 root root         4096  4月 22  2014 gnome-session
+drwxr-xr-x  3 root root         4096  4月 22  2014 gnome-settings-daemon-3.0
+drwxr-xr-x  3 root root         4096  4月 22  2014 gnome-system-monitor
+drwxr-xr-x  2 root root         4096  4月 22  2014 gnome-user-share
+drwxr-xr-x  2 root root         4096  1月  6 15:58 gnupg
+drwxr-xr-x  2 root root         4096  4月 22  2014 gold-ld
+drwxr-xr-x  3 root root         4096  1月  7 16:48 groff
+drwxr-xr-x  3 root root         4096  1月  6 15:59 grub
+drwxr-xr-x  2 root root         4096  1月  6 15:59 grub-legacy
+drwxr-xr-x  3 root root         4096  4月 22  2014 guile
+drwxr-xr-x  3 root root         4096  4月 22  2014 guile-2.0
+drwxr-xr-x  2 root root         4096  4月 22  2014 gvfs
+drwxr-xr-x  2 root root         4096  4月 22  2014 ibus
+drwxr-xr-x  2 root root         4096  4月 22  2014 ibus-mozc
+drwxr-xr-x  3 root root         4096  4月 22  2014 indicators3
+drwxr-xr-x  3 root root         4096  3月  3  2014 initramfs-tools
+drwxr-xr-x  2 root root         4096  4月 19  2014 insserv
+drwxr-xr-x  2 root root         4096  4月 22  2014 ispell
+drwxr-xr-x  3 root root         4096 12月 24  2013 klibc
+drwxr-xr-x  2 root root         4096  1月  6 15:58 language-selector
+drwxr-xr-x  2 root root         4096  4月 22  2014 ldscripts
+lrwxrwxrwx  1 root root           20 11月  7 08:34 libI810XvMC.so.1 -> libI810XvMC.so.1.0.0
+-rw-r--r--  1 root root        47432 11月  7 08:34 libI810XvMC.so.1.0.0
+lrwxrwxrwx  1 root root           21 11月  7 08:34 libIntelXvMC.so.1 -> libIntelXvMC.so.1.0.0
+-rw-r--r--  1 root root       409856 11月  7 08:34 libIntelXvMC.so.1.0.0
+drwxr-xr-x  4 root root         4096  4月 22  2014 libaccount-plugin-1.0
+lrwxrwxrwx  1 root root           30  1月  6 15:23 libaccount-plugin-1.0.so.0 -> libaccount-plugin-1.0.so.0.0.0
+-rw-r--r--  1 root root        48416  3月 16  2014 libaccount-plugin-1.0.so.0.0.0
+lrwxrwxrwx  1 root root           19  1月  6 15:23 libaspell.so.15 -> libaspell.so.15.2.0
+-rw-r--r--  1 root root       764848 12月 15  2013 libaspell.so.15.2.0
+lrwxrwxrwx  1 root root           10  3月 27  2014 libau.so -> libau.so.2
+lrwxrwxrwx  1 root root           12  3月 27  2014 libau.so.2 -> libau.so.2.7
+-rw-r--r--  1 root root        18544  3月 27  2014 libau.so.2.7
+-rw-r--r--  1 root root      1162128  4月 16  2014 libbfd-2.24-system.so
+lrwxrwxrwx  1 root root           18 12月 10 04:01 libbind9.so.90 -> libbind9.so.90.0.9
+-rw-r--r--  1 root root        55080 12月 10 04:01 libbind9.so.90.0.9
+lrwxrwxrwx  1 root root           25  1月  6 15:23 libbrasero-burn3.so.1 -> libbrasero-burn3.so.1.2.4
+-rw-r--r--  1 root root       556648 12月 17  2013 libbrasero-burn3.so.1.2.4
+lrwxrwxrwx  1 root root           26  1月  6 15:23 libbrasero-media3.so.1 -> libbrasero-media3.so.1.2.4
+-rw-r--r--  1 root root       151264 12月 17  2013 libbrasero-media3.so.1.2.4
+lrwxrwxrwx  1 root root           26  1月  6 15:23 libbrasero-utils3.so.1 -> libbrasero-utils3.so.1.2.4
+-rw-r--r--  1 root root       162064 12月 17  2013 libbrasero-utils3.so.1.2.4
+lrwxrwxrwx  1 root root           17  1月  6 15:23 libburn.so.4 -> libburn.so.4.87.0
+-rw-r--r--  1 root root       296040 12月 16  2013 libburn.so.4.87.0
+lrwxrwxrwx  1 root root           22 10月 21 05:26 libcamel-1.2.so.45 -> libcamel-1.2.so.45.0.0
+-rw-r--r--  1 root root      1445144 10月 21 05:27 libcamel-1.2.so.45.0.0
+lrwxrwxrwx  1 root root           17  1月  6 15:23 libcdio.so.13 -> libcdio.so.13.0.0
+-rw-r--r--  1 root root       139880 12月 16  2013 libcdio.so.13.0.0
+lrwxrwxrwx  1 root root           21  1月  6 15:23 libcdio_cdda.so.1 -> libcdio_cdda.so.1.0.0
+-rw-r--r--  1 root root        31168 12月 16  2013 libcdio_cdda.so.1.0.0
+lrwxrwxrwx  1 root root           25  1月  6 15:23 libcdio_paranoia.so.1 -> libcdio_paranoia.so.1.0.0
+-rw-r--r--  1 root root        31008 12月 16  2013 libcdio_paranoia.so.1.0.0
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libcdr-0.0.so.0 -> libcdr-0.0.so.0.0.15
+-rw-r--r--  1 root root       896408  4月 10  2014 libcdr-0.0.so.0.0.15
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libchromeXvMC.so -> libchromeXvMC.so.1.0.0
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libchromeXvMC.so.1 -> libchromeXvMC.so.1.0.0
+-rw-r--r--  1 root root        47656  2月  5  2014 libchromeXvMC.so.1.0.0
+lrwxrwxrwx  1 root root           25  1月  6 15:23 libchromeXvMCPro.so -> libchromeXvMCPro.so.1.0.0
+lrwxrwxrwx  1 root root           25  1月  6 15:23 libchromeXvMCPro.so.1 -> libchromeXvMCPro.so.1.0.0
+-rw-r--r--  1 root root        51752  2月  5  2014 libchromeXvMCPro.so.1.0.0
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libcmis-0.4.so.4 -> libcmis-0.4.so.4.0.1
+-rw-r--r--  1 root root      1281888  2月  6  2014 libcmis-0.4.so.4.0.1
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libcmis-c-0.4.so.4 -> libcmis-c-0.4.so.4.0.1
+-rw-r--r--  1 root root       199720  2月  6  2014 libcmis-c-0.4.so.4.0.1
+-rw-r--r--  1 root root       733776 11月  5 04:51 libcompiz_core.so.0.9.11.3
+lrwxrwxrwx  1 root root           26 11月  5 04:50 libcompiz_core.so.ABI-20140123 -> libcompiz_core.so.0.9.11.3
+lrwxrwxrwx  1 root root           24 11月  5 04:50 libcompizconfig.so.0 -> libcompizconfig.so.0.0.0
+-rw-r--r--  1 root root       327560 11月  5 04:51 libcompizconfig.so.0.0.0
+-rw-r--r--  1 root root        48176 11月  5 04:51 libcompizconfig_gsettings_backend.so
+lrwxrwxrwx  1 root root           18  1月  6 15:23 libdaemon.so.0 -> libdaemon.so.0.5.0
+-rw-r--r--  1 root root        26960 12月 14  2013 libdaemon.so.0.5.0
+lrwxrwxrwx  1 root root           22 11月  5 04:50 libdecoration.so.0 -> libdecoration.so.0.0.0
+-rw-r--r--  1 root root        39296 11月  5 04:51 libdecoration.so.0.0.0
+-rw-r--r--  1 root root       387654 10月 21  2013 libdialog.a
+lrwxrwxrwx  1 root root           28  1月  6 15:23 libdmapsharing-3.0.so.2 -> libdmapsharing-3.0.so.2.9.24
+-rw-r--r--  1 root root       185856  2月 26  2014 libdmapsharing-3.0.so.2.9.24
+lrwxrwxrwx  1 root root           17 12月 10 04:01 libdns.so.100 -> libdns.so.100.2.2
+-rw-r--r--  1 root root      1908208 12月 10 04:01 libdns.so.100.2.2
+lrwxrwxrwx  1 root root           24 10月 21 05:27 libebackend-1.2.so.7 -> libebackend-1.2.so.7.0.0
+-rw-r--r--  1 root root       463008 10月 21 05:27 libebackend-1.2.so.7.0.0
+lrwxrwxrwx  1 root root           22 10月 21 05:26 libebook-1.2.so.14 -> libebook-1.2.so.14.3.1
+-rw-r--r--  1 root root       160888 10月 21 05:27 libebook-1.2.so.14.3.1
+lrwxrwxrwx  1 root root           30 10月 21 05:27 libebook-contacts-1.2.so.0 -> libebook-contacts-1.2.so.0.0.0
+-rw-r--r--  1 root root       147224 10月 21 05:27 libebook-contacts-1.2.so.0.0.0
+lrwxrwxrwx  1 root root           21 10月 21 05:27 libecal-1.2.so.16 -> libecal-1.2.so.16.0.0
+-rw-r--r--  1 root root       332360 10月 21 05:27 libecal-1.2.so.16.0.0
+lrwxrwxrwx  1 root root           27 10月 21 05:26 libedata-book-1.2.so.20 -> libedata-book-1.2.so.20.0.0
+-rw-r--r--  1 root root       232352 10月 21 05:27 libedata-book-1.2.so.20.0.0
+lrwxrwxrwx  1 root root           26 10月 21 05:27 libedata-cal-1.2.so.23 -> libedata-cal-1.2.so.23.0.0
+-rw-r--r--  1 root root       235968 10月 21 05:27 libedata-cal-1.2.so.23.0.0
+lrwxrwxrwx  1 root root           28 10月 21 05:26 libedataserver-1.2.so.18 -> libedataserver-1.2.so.18.0.0
+-rw-r--r--  1 root root       674568 10月 21 05:27 libedataserver-1.2.so.18.0.0
+lrwxrwxrwx  1 root root           23  6月  4  2014 libevdocument3.so.4 -> libevdocument3.so.4.0.0
+-rw-r--r--  1 root root       227232  6月  4  2014 libevdocument3.so.4.0.0
+lrwxrwxrwx  1 root root           19  6月  4  2014 libevview3.so.3 -> libevview3.so.3.0.0
+-rw-r--r--  1 root root       301032  6月  4  2014 libevview3.so.3.0.0
+lrwxrwxrwx  1 root root           18  1月  6 15:23 libexiv2.so.12 -> libexiv2.so.12.0.0
+-rw-r--r--  1 root root      2300872 12月 17  2013 libexiv2.so.12.0.0
+lrwxrwxrwx  1 root root           26  1月  6 15:23 libexttextcat-2.0.so.0 -> libexttextcat-2.0.so.0.0.0
+-rw-r--r--  1 root root        18504 12月 29  2013 libexttextcat-2.0.so.0.0.0
+lrwxrwxrwx  1 root root           18  1月  6 15:23 libgdata.so.13 -> libgdata.so.13.5.3
+-rw-r--r--  1 root root       721408  1月  7  2014 libgdata.so.13.5.3
+-rw-r--r--  1 root root       245232  4月 29  2014 libgettextlib-0.18.3.so
+-rw-r--r--  1 root root       268176  4月 29  2014 libgettextsrc-0.18.3.so
+lrwxrwxrwx  1 root root           28  8月  9 06:30 libgirepository-1.0.so.1 -> libgirepository-1.0.so.1.0.0
+-rw-r--r--  1 root root       208352  8月  9 06:30 libgirepository-1.0.so.1.0.0
+lrwxrwxrwx  1 root root           28  5月 15  2014 libgnome-bluetooth.so.11 -> libgnome-bluetooth.so.11.0.0
+-rw-r--r--  1 root root       160800  5月 15  2014 libgnome-bluetooth.so.11.0.0
+drwxr-xr-x  2 root root         4096  4月 22  2014 libgnome-desktop-3-7
+lrwxrwxrwx  1 root root           27  1月  6 15:23 libgnome-desktop-3.so.7 -> libgnome-desktop-3.so.7.0.0
+-rw-r--r--  1 root root       207432  3月 17  2014 libgnome-desktop-3.so.7.0.0
+lrwxrwxrwx  1 root root           24  1月  6 15:23 libgnome-menu-3.so.0 -> libgnome-menu-3.so.0.0.1
+-rw-r--r--  1 root root       109976  3月 17  2014 libgnome-menu-3.so.0.0.1
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libgnomekbd.so.8 -> libgnomekbd.so.8.0.0
+-rw-r--r--  1 root root        27120  3月 15  2013 libgnomekbd.so.8.0.0
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libgnomekbdui.so.8 -> libgnomekbdui.so.8.0.0
+-rw-r--r--  1 root root        90648  3月 15  2013 libgnomekbdui.so.8.0.0
+lrwxrwxrwx  1 root root           13  7月  2  2014 libgs.so.9 -> libgs.so.9.10
+-rw-r--r--  1 root root     11928192  7月  2  2014 libgs.so.9.10
+lrwxrwxrwx  1 root root           21  1月  6 15:23 libgssdp-1.0.so.3 -> libgssdp-1.0.so.3.0.0
+-rw-r--r--  1 root root        56472  3月 20  2014 libgssdp-1.0.so.3.0.0
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libgtop-2.0.so.7 -> libgtop-2.0.so.7.2.0
+-rw-r--r--  1 root root        72520 10月 21  2013 libgtop-2.0.so.7.2.0
+lrwxrwxrwx  1 root root           26  1月  6 15:23 libgucharmap_2_90.so.7 -> libgucharmap_2_90.so.7.0.0
+-rw-r--r--  1 root root      4170344  1月 15  2014 libgucharmap_2_90.so.7.0.0
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libguile-2.0.so.22 -> libguile-2.0.so.22.7.0
+-rw-r--r--  1 root root      1543432 12月 13  2013 libguile-2.0.so.22.7.0
+lrwxrwxrwx  1 root root           31  1月  6 15:23 libguilereadline-v-18.so -> libguilereadline-v-18.so.18.0.0
+lrwxrwxrwx  1 root root           31  1月  6 15:23 libguilereadline-v-18.so.18 -> libguilereadline-v-18.so.18.0.0
+-rw-r--r--  1 root root        52568 12月 13  2013 libguilereadline-v-18.so.18.0.0
+lrwxrwxrwx  1 root root           21  1月  6 15:23 libgupnp-1.0.so.4 -> libgupnp-1.0.so.4.0.0
+-rw-r--r--  1 root root       172392  3月 28  2014 libgupnp-1.0.so.4.0.0
+lrwxrwxrwx  1 root root           22 10月  3 04:22 libgweather-3.so.6 -> libgweather-3.so.6.0.1
+-rw-r--r--  1 root root       144472 10月  3 04:22 libgweather-3.so.6.0.1
+lrwxrwxrwx  1 root root           16  5月 14  2014 libhpip.so.0 -> libhpip.so.0.0.1
+-rw-r--r--  1 root root       161504  5月 14  2014 libhpip.so.0.0.1
+lrwxrwxrwx  1 root root           17  5月 14  2014 libhpmud.so.0 -> libhpmud.so.0.0.6
+-rw-r--r--  1 root root       105568  5月 14  2014 libhpmud.so.0.0.6
+lrwxrwxrwx  1 root root           18  1月  6 15:23 libhyphen.so.0 -> libhyphen.so.0.2.1
+-rw-r--r--  1 root root        26696 12月  4  2013 libhyphen.so.0.2.1
+lrwxrwxrwx  1 root root           16  1月  6 15:23 libical.so.1 -> libical.so.1.0.0
+-rw-r--r--  1 root root       363488  6月 13  2013 libical.so.1.0.0
+lrwxrwxrwx  1 root root           18  1月  6 15:23 libicalss.so.1 -> libicalss.so.1.0.0
+-rw-r--r--  1 root root        89400  6月 13  2013 libicalss.so.1.0.0
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libicalvcal.so.1 -> libicalvcal.so.1.0.0
+-rw-r--r--  1 root root        81416  6月 13  2013 libicalvcal.so.1.0.0
+-rw-r--r--  1 root root        22768 10月  3  2012 libijs-0.35.so
+lrwxrwxrwx  1 root root           16 12月 10 04:01 libisc.so.95 -> libisc.so.95.5.0
+-rw-r--r--  1 root root       400824 12月 10 04:01 libisc.so.95.5.0
+lrwxrwxrwx  1 root root           18 12月 10 04:01 libisccc.so.90 -> libisccc.so.90.0.6
+-rw-r--r--  1 root root        34776 12月 10 04:01 libisccc.so.90.0.6
+lrwxrwxrwx  1 root root           19 12月 10 04:01 libisccfg.so.90 -> libisccfg.so.90.1.0
+-rw-r--r--  1 root root       140416 12月 10 04:01 libisccfg.so.90.1.0
+lrwxrwxrwx  1 root root           18  1月  6 15:23 libisofs.so.6 -> libisofs.so.6.70.0
+-rw-r--r--  1 root root       355360  1月 13  2014 libisofs.so.6.70.0
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libjbig2dec.so.0 -> libjbig2dec.so.0.0.0
+-rw-r--r--  1 root root        92384 11月 29  2012 libjbig2dec.so.0.0.0
+lrwxrwxrwx  1 root root           15  1月  6 15:23 libjte.so.1 -> libjte.so.1.0.0
+-rw-r--r--  1 root root        47544 12月 24  2013 libjte.so.1.0.0
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libkpathsea.so.6 -> libkpathsea.so.6.1.1
+-rw-r--r--  1 root root        89376  1月 23  2014 libkpathsea.so.6.1.1
+lrwxrwxrwx  1 root root           19  1月  6 15:23 liblangtag.so.1 -> liblangtag.so.1.2.0
+-rw-r--r--  1 root root       129432  7月  2  2013 liblangtag.so.1.2.0
+lrwxrwxrwx  1 root root           29 10月 31 03:55 liblightdm-gobject-1.so.0 -> liblightdm-gobject-1.so.0.0.0
+-rw-r--r--  1 root root        93872 10月 31 03:55 liblightdm-gobject-1.so.0.0.0
+-rw-r--r--  1 root root          984  3月 16  2014 liblirc_client.la
+lrwxrwxrwx  1 root root           23  1月  6 15:23 liblirc_client.so.0 -> liblirc_client.so.0.2.1
+-rw-r--r--  1 root root        26888  3月 16  2014 liblirc_client.so.0.2.1
+lrwxrwxrwx  1 root root           18 12月 10 04:01 liblwres.so.90 -> liblwres.so.90.0.7
+-rw-r--r--  1 root root        75688 12月 10 04:01 liblwres.so.90.0.7
+lrwxrwxrwx  1 root root           21 12月 18  2013 libm17n-core.so.0 -> libm17n-core.so.0.4.0
+-rw-r--r--  1 root root       129560 12月 18  2013 libm17n-core.so.0.4.0
+lrwxrwxrwx  1 root root           20 12月 18  2013 libm17n-flt.so.0 -> libm17n-flt.so.0.4.0
+-rw-r--r--  1 root root        43376 12月 18  2013 libm17n-flt.so.0.4.0
+lrwxrwxrwx  1 root root           20 12月 18  2013 libm17n-gui.so.0 -> libm17n-gui.so.0.4.0
+-rw-r--r--  1 root root       165096 12月 18  2013 libm17n-gui.so.0.4.0
+lrwxrwxrwx  1 root root           16 12月 18  2013 libm17n.so.0 -> libm17n.so.0.4.0
+-rw-r--r--  1 root root       166864 12月 18  2013 libm17n.so.0.4.0
+lrwxrwxrwx  1 root root           21  1月  6 15:23 libmeanwhile.so.1 -> libmeanwhile.so.1.0.2
+-rw-r--r--  1 root root       209304 12月 22  2013 libmeanwhile.so.1.0.2
+lrwxrwxrwx  1 root root           28  1月  6 15:23 libmetacity-private.so.0 -> libmetacity-private.so.0.0.0
+-rw-r--r--  1 root root       163352  2月 13  2014 libmetacity-private.so.0.0.0
+-rw-r--r--  1 root root        43408  6月 27  2014 libminiupnpc.so.8
+lrwxrwxrwx  1 root root           35  1月  6 15:23 libmission-control-plugins.so.0 -> libmission-control-plugins.so.0.5.1
+-rw-r--r--  1 root root        47624  4月  7  2014 libmission-control-plugins.so.0.5.1
+lrwxrwxrwx  1 root root           21  1月  6 15:23 libmspub-0.0.so.0 -> libmspub-0.0.so.0.0.6
+-rw-r--r--  1 root root       506896 12月 27  2013 libmspub-0.0.so.0.0.6
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libmythes-1.2.so.0 -> libmythes-1.2.so.0.0.0
+-rw-r--r--  1 root root        14528 12月 22  2013 libmythes-1.2.so.0.0.0
+-rw-r--r--  1 root root        10200 10月  5  2012 libnatpmp.so.1
+lrwxrwxrwx  1 root root           30  1月  9 03:31 libnautilus-extension.so.1 -> libnautilus-extension.so.1.4.0
+-rw-r--r--  1 root root        39408  1月  9 03:31 libnautilus-extension.so.1.4.0
+lrwxrwxrwx  1 root root           24  1月  6 15:23 libneon-gnutls.so.27 -> libneon-gnutls.so.27.3.0
+-rw-r--r--  1 root root       159368 12月 19  2013 libneon-gnutls.so.27.3.0
+lrwxrwxrwx  1 root root           17  2月  7  2013 libnetpbm.so.10 -> libnetpbm.so.10.0
+-rw-r--r--  1 root root       142064  2月  7  2013 libnetpbm.so.10.0
+lrwxrwxrwx  1 root root           18  7月 16  2014 libnm-gtk.so.0 -> libnm-gtk.so.0.0.0
+-rw-r--r--  1 root root       181872  7月 16  2014 libnm-gtk.so.0.0.0
+-rw-r--r--  1 root root      1369432  4月 16  2014 libopcodes-2.24-system.so
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libopenobex.so.1 -> libopenobex.so.1.5.0
+-rw-r--r--  1 root root        39208  8月  8  2013 libopenobex.so.1.5.0
+lrwxrwxrwx  1 root root           21  1月  6 15:23 liborcus-0.6.so.0 -> liborcus-0.6.so.0.0.0
+-rw-r--r--  1 root root       601176  2月 19  2014 liborcus-0.6.so.0.0.0
+lrwxrwxrwx  1 root root           25  1月  6 15:23 liborcus-mso-0.6.so.0 -> liborcus-mso-0.6.so.0.0.0
+-rw-r--r--  1 root root        47512  2月 19  2014 liborcus-mso-0.6.so.0.0.0
+lrwxrwxrwx  1 root root           28  1月  6 15:23 liborcus-parser-0.6.so.0 -> liborcus-parser-0.6.so.0.0.0
+-rw-r--r--  1 root root       121840  2月 19  2014 liborcus-parser-0.6.so.0.0.0
+drwxr-xr-x  3 root root         4096  4月 22  2014 libpeas-1.0
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libpeas-1.0.so.0 -> libpeas-1.0.so.0.801.0
+-rw-r--r--  1 root root        81440  2月 19  2014 libpeas-1.0.so.0.801.0
+lrwxrwxrwx  1 root root           26  1月  6 15:23 libpeas-gtk-1.0.so.0 -> libpeas-gtk-1.0.so.0.801.0
+-rw-r--r--  1 root root        56944  2月 19  2014 libpeas-gtk-1.0.so.0.801.0
+lrwxrwxrwx  1 root root           17  1月  6 15:23 libperl.so.5.18 -> libperl.so.5.18.2
+-rw-r--r--  1 root root      1608280  3月 28  2014 libperl.so.5.18.2
+lrwxrwxrwx  1 root root           24  1月  6 15:23 libpocketsphinx.so.1 -> libpocketsphinx.so.1.1.0
+-rw-r--r--  1 root root       271656 12月 23  2013 libpocketsphinx.so.1.1.0
+lrwxrwxrwx  1 root root           19  1月  6 15:23 libpspell.so.15 -> libpspell.so.15.2.0
+-rw-r--r--  1 root root         5840 12月 15  2013 libpspell.so.15.2.0
+-rw-r--r--  1 root root       587208  4月  4  2014 libpulsecore-4.0.so
+lrwxrwxrwx  1 root root           26 10月 28 01:57 libpurple-client.so.0 -> libpurple-client.so.0.10.9
+-rw-r--r--  1 root root       169800 10月 28 01:57 libpurple-client.so.0.10.9
+lrwxrwxrwx  1 root root           19 10月 28 01:57 libpurple.so.0 -> libpurple.so.0.10.9
+-rw-r--r--  1 root root      1248024 10月 28 01:57 libpurple.so.0.10.9
+lrwxrwxrwx  1 root root           32  1月  6 15:23 libpyglib-2.0-python2.7.so.0 -> libpyglib-2.0-python2.7.so.0.0.0
+-rw-r--r--  1 root root        18712  2月 23  2014 libpyglib-2.0-python2.7.so.0.0.0
+drwxr-xr-x  5 root root         4096  1月  6 15:28 libreoffice
+lrwxrwxrwx  1 root root           26  4月 29  2014 librhythmbox-core.so.8 -> librhythmbox-core.so.8.0.0
+-rw-r--r--  1 root root      1290144  4月 29  2014 librhythmbox-core.so.8.0.0
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libsgutils2.so.2 -> libsgutils2.so.2.0.0
+-rw-r--r--  1 root root       174720 12月 19  2013 libsgutils2.so.2.0.0
+lrwxrwxrwx  1 root root           28  1月  6 15:23 libsignon-extension.so.1 -> libsignon-extension.so.1.0.0
+lrwxrwxrwx  1 root root           28  1月  6 15:23 libsignon-extension.so.1.0 -> libsignon-extension.so.1.0.0
+-rw-r--r--  1 root root        72200  3月 17  2014 libsignon-extension.so.1.0.0
+lrwxrwxrwx  1 root root           33  1月  6 15:23 libsignon-plugins-common.so.1 -> libsignon-plugins-common.so.1.0.0
+lrwxrwxrwx  1 root root           33  1月  6 15:23 libsignon-plugins-common.so.1.0 -> libsignon-plugins-common.so.1.0.0
+-rw-r--r--  1 root root        35472  3月 17  2014 libsignon-plugins-common.so.1.0.0
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libsignon-qt5.so.1 -> libsignon-qt5.so.1.0.0
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libsignon-qt5.so.1.0 -> libsignon-qt5.so.1.0.0
+-rw-r--r--  1 root root       220576  3月 17  2014 libsignon-qt5.so.1.0.0
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libsphinxad.so.0 -> libsphinxad.so.0.0.1
+-rw-r--r--  1 root root        22656 12月 23  2013 libsphinxad.so.0.0.1
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libsphinxbase.so.1 -> libsphinxbase.so.1.1.1
+-rw-r--r--  1 root root       263480 12月 23  2013 libsphinxbase.so.1.1.1
+lrwxrwxrwx  1 root root           14  1月  6 15:23 libt1.so.5 -> libt1.so.5.1.2
+-rw-r--r--  1 root root       295016 12月 29  2013 libt1.so.5.1.2
+lrwxrwxrwx  1 root root           15  1月  6 15:23 libt1x.so.5 -> libt1x.so.5.1.2
+-rw-r--r--  1 root root        18552 12月 29  2013 libt1x.so.5.1.2
+lrwxrwxrwx  1 root root           23  1月  6 15:23 libtimezonemap.so.1 -> libtimezonemap.so.1.0.0
+-rw-r--r--  1 root root        64912 11月  5  2013 libtimezonemap.so.1.0.0
+lrwxrwxrwx  1 root root           32  1月  6 15:23 libtotem-plparser-mini.so.18 -> libtotem-plparser-mini.so.18.1.0
+-rw-r--r--  1 root root        22872  4月  1  2014 libtotem-plparser-mini.so.18.1.0
+lrwxrwxrwx  1 root root           27  1月  6 15:23 libtotem-plparser.so.18 -> libtotem-plparser.so.18.1.0
+-rw-r--r--  1 root root       126952  4月  1  2014 libtotem-plparser.so.18.1.0
+lrwxrwxrwx  1 root root           17  1月  6 15:23 libtotem.so.0 -> libtotem.so.0.0.0
+-rw-r--r--  1 root root       447320  4月  1  2014 libtotem.so.0.0.0
+lrwxrwxrwx  1 root root           26  8月 26 23:03 libunity-core-6.0.so.9 -> libunity-core-6.0.so.9.0.0
+-rw-r--r--  1 root root      1254080  8月 26 23:04 libunity-core-6.0.so.9.0.0
+drwxr-xr-x  2 root root         4096  4月 22  2014 libunity-webapps
+lrwxrwxrwx  1 root root           36  1月  6 15:23 libunity-webapps-repository.so.0 -> libunity-webapps-repository.so.0.0.0
+-rw-r--r--  1 root root        56352  4月  9  2014 libunity-webapps-repository.so.0.0.0
+lrwxrwxrwx  1 root root           25  1月  6 15:23 libunity-webapps.so.0 -> libunity-webapps.so.0.0.0
+-rw-r--r--  1 root root       208384  4月  9  2014 libunity-webapps.so.0.0.0
+lrwxrwxrwx  1 root root           24 12月  5 07:09 libuno_cppu.so.3 -> ure/lib/libuno_cppu.so.3
+lrwxrwxrwx  1 root root           34 12月  5 07:09 libuno_cppuhelpergcc3.so.3 -> ure/lib/libuno_cppuhelpergcc3.so.3
+lrwxrwxrwx  1 root root           37 12月  5 07:09 libuno_purpenvhelpergcc3.so.3 -> ure/lib/libuno_purpenvhelpergcc3.so.3
+lrwxrwxrwx  1 root root           23 12月  5 07:09 libuno_sal.so.3 -> ure/lib/libuno_sal.so.3
+lrwxrwxrwx  1 root root           33 12月  5 07:09 libuno_salhelpergcc3.so.3 -> ure/lib/libuno_salhelpergcc3.so.3
+-rw-r--r--  1 root root        27000 10月 22  2013 libusbmuxd.so.1.0.8
+lrwxrwxrwx  1 root root           19  1月  6 15:23 libusbmuxd.so.2 -> libusbmuxd.so.1.0.8
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libutempter.so.0 -> libutempter.so.1.1.5
+-rw-r--r--  1 root root        10240 10月  5  2012 libutempter.so.1.1.5
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libvisio-0.0.so.0 -> libvisio-0.0.so.0.0.31
+-rw-r--r--  1 root root       724304 12月 27  2013 libvisio-0.0.so.0.0.31
+drwxr-xr-x  2 root root         4096  4月 22  2014 libvte-2.90-9
+lrwxrwxrwx  1 root root           22  1月  6 15:23 libvte2_90.so.9 -> libvte2_90.so.9.3400.9
+-rw-r--r--  1 root root       666128 11月 22  2013 libvte2_90.so.9.3400.9
+lrwxrwxrwx  1 root root           18  6月 11  2014 libwhoopsie.so.0 -> libwhoopsie.so.0.0
+-rw-r--r--  1 root root        10384  6月 11  2014 libwhoopsie.so.0.0
+lrwxrwxrwx  1 root root           20  1月  6 15:23 libwnck-1.so.22 -> libwnck-1.so.22.3.31
+-rw-r--r--  1 root root       255448 12月 22  2013 libwnck-1.so.22.3.31
+lrwxrwxrwx  1 root root           19  1月  6 15:23 libwpd-0.9.so.9 -> libwpd-0.9.so.9.0.9
+-rw-r--r--  1 root root       828864  9月  6  2013 libwpd-0.9.so.9.0.9
+lrwxrwxrwx  1 root root           26  1月  6 15:23 libwpd-stream-0.9.so.9 -> libwpd-stream-0.9.so.9.0.9
+-rw-r--r--  1 root root        88600  9月  6  2013 libwpd-stream-0.9.so.9.0.9
+lrwxrwxrwx  1 root root           19  1月  6 15:23 libwpg-0.2.so.2 -> libwpg-0.2.so.2.0.2
+-rw-r--r--  1 root root       179624 12月 22  2013 libwpg-0.2.so.2.0.2
+lrwxrwxrwx  1 root root           19  1月  6 15:23 libwps-0.2.so.2 -> libwps-0.2.so.2.0.9
+-rw-r--r--  1 root root       753368 12月 22  2013 libwps-0.2.so.2.0.9
+lrwxrwxrwx  1 root root           19  1月  6 15:23 libxapian.so.22 -> libxapian.so.22.6.3
+-rw-r--r--  1 root root      2051544 12月 19  2013 libxapian.so.22.6.3
+lrwxrwxrwx  1 root root           21  1月  6 15:23 libxklavier.so.16 -> libxklavier.so.16.4.0
+-rw-r--r--  1 root root       107200  2月 21  2014 libxklavier.so.16.4.0
+lrwxrwxrwx  1 root root           16  1月  6 15:23 libyelp.so.0 -> libyelp.so.0.0.0
+-rw-r--r--  1 root root       248504  3月 10  2014 libyelp.so.0.0.0
+lrwxrwxrwx  1 root root           25  1月  6 15:23 libzeitgeist-1.0.so.1 -> libzeitgeist-1.0.so.1.1.4
+-rw-r--r--  1 root root       151512 12月 22  2013 libzeitgeist-1.0.so.1.1.4
+lrwxrwxrwx  1 root root           18  1月  6 15:23 libzinnia.so.0 -> libzinnia.so.0.0.0
+-rw-r--r--  1 root root       163112  2月 11  2014 libzinnia.so.0.0.0
+drwxr-xr-x  2 root root         4096  1月  6 15:59 lightdm
+drwxr-xr-x  3 root root         4096  4月 22  2014 linux-boot-probes
+drwxr-xr-x  3 root root         4096  1月  6 15:26 locale
+drwxr-xr-x  2 root root         4096  4月 22  2014 lp_solve
+drwxr-xr-x  3 root root         4096  1月  6 16:18 m17n
+drwxr-xr-x  2 root root         4096  1月  6 15:58 man-db
+drwxr-xr-x  2 root root         4096  4月 22  2014 memtest86+
+drwxr-xr-x  3 root root         4096  1月  8 15:05 mime
+drwxr-xr-x  2 root root         4096  1月  6 15:59 mission-control-plugins.0
+drwxr-xr-x  2 root root         4096  4月 22  2014 mozc
+drwxr-xr-x  4 root root         4096  4月 22  2014 mozilla
+drwxr-xr-x  3 root root         4096  1月 27 11:24 nautilus
+drwxr-xr-x  3 root root         4096  4月 22  2014 nautilus-sendto
+drwxr-xr-x  2 root root         4096  1月  6 15:59 nux
+drwxr-xr-x  2 root root         4096  1月  6 15:59 nvidia
+drwxr-xr-x  2 root root         4096  4月 22  2014 obexd
+drwxr-xr-x  2 root root         4096  1月  6 16:00 openssh
+drwxr-xr-x  2 root root         4096  4月 22  2014 os-prober
+drwxr-xr-x  4 root root         4096  4月 22  2014 os-probes
+drwxr-xr-x  2 root root         4096  4月 22  2014 pcmciautils
+drwxr-xr-x  3 root root         4096  4月 19  2014 perl
+drwxr-xr-x 12 root root         4096  1月  6 15:59 perl5
+drwxr-xr-x  2 root root         4096  1月  6 16:00 pkgconfig
+drwxr-xr-x  7 root root         4096  1月  6 16:00 pm-utils
+drwxr-xr-x  2 root root         4096  4月 22  2014 policykit-1
+drwxr-xr-x  2 root root         4096  4月 22  2014 policykit-1-gnome
+drwxr-xr-x  3 root root         4096  4月 22  2014 pppd
+-rw-r--r--  1 root root        39392  4月 29  2014 preloadable_libintl.so
+-rwsr-xr-x  1 root root        10344 12月  5 04:32 pt_chown
+drwxr-xr-x  3 root root         4096  4月 22  2014 pulse-4.0
+drwxr-xr-x  3 root root         4096  4月 22  2014 pulseaudio
+drwxr-xr-x  3 root root         4096  1月  6 15:59 purple-2
+drwxr-xr-x  3 root root         4096  4月 22  2014 pyshared
+drwxr-xr-x 26 root root        12288  1月  6 15:26 python2.7
+drwxr-xr-x  3 root root         4096  2月 23  2014 python3
+drwxr-xr-x 33 root root         4096  4月 22  2014 python3.4
+drwxr-xr-x  3 root root         4096  4月 22  2014 remmina
+drwxr-xr-x  3 root root         4096  1月  6 15:59 rhythmbox
+drwxr-xr-x  3 root root         4096  4月 22  2014 rpm
+drwxr-xr-x  2 root root         4096  1月  6 15:59 rsyslog
+drwxr-xr-x  2 root root         4096  4月 22  2014 rtkit
+drwxr-xr-x  2 root root         4096  4月  4  2014 samba
+drwxr-xr-x  2 root root         4096  1月  6 15:58 sane
+drwxr-xr-x  2 root root         4096 11月  3  2013 sasl2
+drwxr-xr-x  2 root root         4096  4月 22  2014 seahorse
+drwxr-xr-x  3 root root         4096  1月  6 16:00 shotwell
+drwxr-xr-x  3 root root         4096  4月 22  2014 signon
+drwxr-xr-x  3 root root         4096  1月  6 18:05 smlnj
+drwxr-xr-x  2 root root         4096  2月  3 11:14 software-properties
+drwxr-xr-x  2 root root         4096  4月 22  2014 speech-dispatcher-modules
+drwxr-xr-x  3 root root         4096  1月 15 14:26 ssl
+drwxr-xr-x  2 root root         4096  4月 19  2014 sudo
+drwxr-xr-x  5 root root         4096  4月 22  2014 syslinux
+drwxr-xr-x  2 root root         4096  4月 22  2014 syslinux-legacy
+drwxr-xr-x  2 root root         4096  4月 22  2014 system-service
+drwxr-xr-x  3 root root         4096  4月 22  2014 systemd
+drwxr-xr-x  2 root root         4096  2月  4  2014 tar
+drwxr-xr-x  2 root root         4096  4月 19  2014 tc
+drwxr-xr-x  3 root root         4096  4月 22  2014 tcltk
+drwxr-xr-x  4 root root         4096  1月  6 15:59 telepathy
+drwxr-xr-x  7 root root         4096  1月 22 09:04 thunderbird
+drwxr-xr-x  6 root root         4096  4月 22  2014 thunderbird-addons
+drwxr-xr-x  2 root root         4096  1月 23 22:11 tmpfiles.d
+drwxr-xr-x  4 root root         4096  4月 22  2014 totem
+drwxr-xr-x  3 root root         4096  1月  6 15:31 ubiquity
+drwxr-xr-x  2 root root         4096  1月  6 15:59 ubuntu-release-upgrader
+drwxr-xr-x  2 root root         4096  4月 22  2014 ubuntu-sso-client
+drwxr-xr-x  2 root root         4096  4月 22  2014 udisks2
+drwxr-xr-x  2 root root         4096  1月  6 15:59 unity
+drwxr-xr-x  2 root root         4096  1月  6 15:58 unity-settings-daemon
+drwxr-xr-x  3 root root        12288  1月  6 15:58 unity-settings-daemon-1.0
+drwxr-xr-x  2 root root         4096  1月  6 15:59 update-notifier
+drwxr-xr-x  2 root root         4096  4月 22  2014 upower
+drwxr-xr-x  2 root root         4096  1月  6 15:58 upstart
+drwxr-xr-x  5 root root         4096  4月 22  2014 ure
+drwxr-xr-x  2 root utempter     4096  4月 22  2014 utempter
+drwxr-xr-x  2 root root         4096  4月 22  2014 valgrind
+drwxr-xr-x  2 root root         4096  4月 22  2014 vino
+drwxr-xr-x 16 root root         4096  1月  6 16:25 vmware-tools
+drwxr-xr-x 91 root root        69632  2月  3 11:14 x86_64-linux-gnu
+drwxr-xr-x  3 root root         4096  1月  6 15:58 xorg
+drwxr-xr-x  3 root root         4096  4月 22  2014 xul-ext
+drwxr-xr-x  2 root root         4096  4月 22  2014 xvmcconfig-standard

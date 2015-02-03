@@ -1,0 +1,13 @@
+export
+  = Symbol
+  / Int
+  / ELSE
+
+Symbol
+  = [a-zA-Z]+
+
+Int
+  = [0-9]+
+
+ELSE
+  = .
