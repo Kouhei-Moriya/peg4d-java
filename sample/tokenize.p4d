@@ -1,6 +1,7 @@
 export
   = Symbol
   / Int
+  / White
   / ELSE
 
 Symbol
@@ -8,6 +9,9 @@ Symbol
 
 Int
   = [0-9]+
+
+White
+  = (" " / "\t")+
 
 ELSE
   = .

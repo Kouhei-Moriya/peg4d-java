@@ -15,6 +15,9 @@ public class Format {
 	public int rename(int n) {
 		return n;
 	}
+	public int size() {
+		return 1;
+	}
 }
 
 abstract class CollectionFormat extends Format implements Iterable<Format> {
@@ -52,6 +55,15 @@ abstract class CollectionFormat extends Format implements Iterable<Format> {
 			n = fmt.rename(n);
 		}
 		return n;
+	}
+	
+	@Override
+	public int size() {
+		int ret = 0;
+		for (Format fmt : this.body) {
+			ret += fmt.size();
+		}
+		return ret;
 	}
 }
 
@@ -108,7 +120,12 @@ class ChoiceFormat extends CollectionFormat {
 		StringJoiner sj = new StringJoiner(this.delimiter);
 		List<Format> sorted = new ArrayList<>(this.body);
 		sorted.sort((f1, f2) -> {
-			if (f1 instanceof TerminalFormat && f2 instanceof TerminalFormat) {
+			int size1 = f1.size();
+			int size2 = f2.size();
+			if (size1 != size2) {
+				return size2 - size1;
+			}
+			else if (f1 instanceof TerminalFormat && f2 instanceof TerminalFormat) {
 				return ((TerminalFormat)f2).text.compareTo(((TerminalFormat)f1).text);
 			}
 			else {
@@ -142,6 +159,15 @@ class ChoiceFormat extends CollectionFormat {
 				return choice;
 			}
 		}
+	}
+	@Override
+	public int size() {
+		int ret = 0, tmp = 0;
+		for (Format fmt : this.body) {
+			tmp = fmt.size();
+			ret = ret > tmp ? ret : tmp;
+		}
+		return ret;
 	}
 }
 
@@ -199,6 +225,11 @@ class TerminalFormat extends Format {
 	public int hashCode() {
 		return this.text.hashCode();
 	}
+	
+	@Override
+	public int size() {
+		return this.text.length();
+	}
 }
 
 class EmptyFormat extends TerminalFormat {
@@ -211,6 +242,10 @@ class EmptyFormat extends TerminalFormat {
 	
 	public static EmptyFormat getInstance() {
 		return EmptyFormat.instance;
+	}
+	@Override
+	public int size() {
+		return 0;
 	}
 }
 

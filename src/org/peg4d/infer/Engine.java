@@ -38,7 +38,12 @@ public class Engine {
 	}
 
 	public Format infer(String filePath) {
-		return this.infer(filePath, null);
+		ParsingSource source = org.peg4d.ParsingSource.loadSource(filePath);
+		List<Chunk> chunks = this.chunking(source);
+		List<TokenizedChunk> tokenizedChunks = this.tokenize(chunks);
+		Format fmt = this.structureDiscovery(new Branch(tokenizedChunks));
+		fmt = this.formatRefinement(fmt);
+		return fmt;
 	}
 	public Format infer(String filePath, Statistic stat) {
 		ParsingSource source = org.peg4d.ParsingSource.loadSource(filePath);
@@ -228,8 +233,11 @@ public class Engine {
 	public void output(String outputFileName, Format fmt) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
-			writer.write("File\n  = {(@Chunk \"\\n\"?)+}\n");
-			writer.write("Chunk\n  = {format0}\n");
+			writer.write("start = File / Chunk\n");
+			writer.write("File\n  = (Chunk \"\\n\"?)+\n");
+			writer.write("Chunk\n  = f:format0 {console.log(\"hoge\")}\n");
+			//writer.write("File\n  = {(@Chunk \"\\n\"?)+}\n");
+			//writer.write("Chunk\n  = {format0}\n");
 			for (CollectionFormat lfmt : collectListFormat(fmt)) {
 				writer.write(lfmt.getDefinition() + "\n");
 			}
