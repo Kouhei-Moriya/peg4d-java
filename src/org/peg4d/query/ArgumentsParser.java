@@ -297,7 +297,7 @@ public class ArgumentsParser {
 	}
 
 	@FunctionalInterface
-	protected static interface OptionListener {
+	public static interface OptionListener {
 		public void invoke(Optional<String> arg);
 	}
 }

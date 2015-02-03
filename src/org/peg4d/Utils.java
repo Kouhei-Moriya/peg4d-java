@@ -5,6 +5,9 @@ public class Utils {
 		ParsingSource s = po.getSource();
 		return new StringSource(s.getResourceName(), s.linenum(po.getSourcePosition()), po.getText());
 	}
+	public final static ParsingSource newStringSource(String name, long linenum, String text) {
+		return new StringSource(name, linenum, text);
+	}
 
 	public final static String quoteString(char OpenChar, String Text, char CloseChar) {
 		StringBuilder sb = new StringBuilder();

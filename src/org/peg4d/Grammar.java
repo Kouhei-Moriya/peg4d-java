@@ -238,7 +238,7 @@ public class Grammar {
 		}
 	}
 		
-	final UList<ParsingRule> getExportRuleList() {
+	public final UList<ParsingRule> getExportRuleList() {
 		if(this.exportedRuleList == null) {
 			UList<ParsingRule> l = new UList<ParsingRule>(new ParsingRule[4]);
 			ParsingExpression e = this.getExpression("export");
