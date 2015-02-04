@@ -1,0 +1,63 @@
+
+File
+	= TOTAL FILEDATA+
+
+Chunk
+	= FILEDATA
+
+EOL
+	= ( '\r'? '\n' / !. )
+
+_
+	= SPACE*
+
+SPACE
+	= [ \t\u000B\u000C]
+
+INTEGER
+	= [1-9] [0-9]*
+	/ '0'
+	
+TOTAL
+	= '合計' _ SIZE _ EOL
+
+SIZE
+	= INTEGER
+
+FILEDATA
+	= PERMISSIONS _ LINKS _ OWNER _ GROUP _ SIZE _ MONTH _ DAY _ ( TIME / YEAR ) ' ' FILENAME _ EOL
+
+PERMISSIONS
+	= [-dl] USERPERM USERPERM USERPERM
+
+USERPERM
+	= [-r] [-w] [-x]
+
+LINKS
+	= INTEGER
+
+USER
+	= [A-Za-z_] [-0-9A-Za-z_]* '$'?
+
+OWNER
+	= USER
+
+GROUP
+	= USER
+
+MONTH
+	= ( '1' [0-2] / [1-9] ) '月'
+
+DAY
+	= ( '3' [01] / [12] [0-9] / [1-9] )
+
+TIME
+	= ( '2' [0-3] / [01] [0-9] ) ':' [0-5] [0-9]
+
+YEAR
+	= INTEGER
+
+FILENAME
+	= [-0-9A-Za-z_$ .]+
+//	= ( !( '/' / '\u0000' / EOL ) . )+
+

@@ -1,0 +1,88 @@
+
+File
+	= _ FEATURECOLLECTIONOBJECT? _ !.
+
+Chunk
+	= _ 
+_
+	= SPACE*
+
+SPACE
+	= [ \r\n\t\u000B\u000C]
+
+W
+	= !["\n\\] .
+
+DATE
+	= ( [1-9] [0-9] [0-9] [0-9] ) '-' ( '1' [0-2] / '0' [1-9] ) '-' ( '3' [01] / [12] [0-9] / '0' [1-9] )
+
+TIME
+	= ( '2' [0-3] / [01] [0-9] ) ':' [0-5] [0-9] ':' [0-5] [0-9]
+
+OBJECT
+	= '{' _ ( MEMBER ( _ ',' _ MEMBER )* )? _ '}'
+	/ 'null'
+
+MEMBER
+	= STRING _ ':' _ VALUE
+
+VALUE
+	= STRING
+	/ NUMBER
+	/ 'true'
+	/ 'false'
+	/ ARRAY
+	/ OBJECT
+
+STRING
+	= '"' W+ '"'
+
+NUMBER
+	= '-'? ( '0' / [1-9] [0-9]* ) ( '.' [0-9]+ )? ( [eE] [-+]? [0-9]+ )?
+
+ARRAY
+	= '[' _ ( VALUE ( _ ',' _ VALUE )* )? _ ']'
+
+FEATURECOLLECTIONOBJECT
+	= '{' _ '"type"' _ ':' _ '"FeatureCollection"' ( _ ',' _ FEATURECOLLECTIONMEMBER )* _ '}'
+
+FEATURECOLLECTIONMEMBER
+	= METADATA
+	/ FEATURES
+	/ BBOX
+
+METADATA
+	= '"metadata"' _ ':' _ OBJECT
+
+FEATURES
+	= '"features"' _ ':' _ '[' _ ( FEATUREOBJECT ( _ ',' _ FEATUREOBJECT )* )? _ ']'
+
+BBOX
+	= '"bbox"' _ ':' _ '[' _ ( NUMBER ( _ ',' _ NUMBER )* )? _ ']'
+
+FEATUREOBJECT
+	= '{' _ '"type"' _ ':' _ '"Feature"' ( _ ',' _ FEATUREOBJECTMEMBER )* _ '}'
+
+FEATUREOBJECTMEMBER
+	= PROPERTIES
+	/ GEOMETRY
+	/ ID
+
+PROPERTIES
+	= '"properties"' _ ':' _ OBJECT
+
+GEOMETRY
+	= '"geometry"' _ ':' _ GEOMETRYOBJECT
+
+ID
+	= '"id"' _ ':' _ STRING
+
+GEOMETRYOBJECT
+	= '{' _ '"type"' _ ':' _ '"Point"' ( _ ',' _ GEOMETRYOBJECTMEMBER )* _ '}'
+
+GEOMETRYOBJECTMEMBER
+	= COORDINATES
+
+COORDINATES
+	= '"coordinates"' _ ':' _ ARRAY
+

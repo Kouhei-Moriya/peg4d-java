@@ -1,0 +1,90 @@
+
+File
+	= CONNECTS SOCKETS
+
+Chunk
+	= CONNECTDATA _
+	/ SOCKETDATA _
+
+EOL
+	= ( '\r'? '\n' / !. )
+
+_
+	= SPACE*
+
+SPACE
+	= [ \t\u000B\u000C]
+
+W
+	= [A-Z_]
+
+INTEGER
+	= [1-9] [0-9]*
+	/ '0'
+
+ADDRESS
+	= IP ':' PORT
+
+IP
+	= DECIMALBYTE '.' DECIMALBYTE '.' DECIMALBYTE '.' DECIMALBYTE
+	/ (INTEGER)? ':' (INTEGER)? ':' (INTEGER)?
+
+DECIMALBYTE
+	= '2' ( '5' [0-5] / [0-4] [0-9] )
+	/ '1' [0-9] [0-9]
+	/ [1-9] [0-9]
+	/ [0-9]
+
+PORT
+	= INTEGER
+	/ '*'
+
+CONNECTS
+	= '稼働中のインターネット接続 (サーバと確立)' _ EOL
+	  'Proto' _ '受信-Q' _ '送信-Q' _ '内部アドレス' _ '外部アドレス' _ '状態' _ EOL
+	  ( CONNECTDATA _ EOL )*
+
+CONNECTDATA
+	= PROTOCOL _ RECEIVEQUEUE _ SENDQUEUE _ INTADDR _ EXTADDR _ (STATE)?
+
+PROTOCOL
+	= [0-9a-z]+
+
+RECEIVEQUEUE
+	= INTEGER
+
+SENDQUEUE
+	= INTEGER
+
+INTADDR
+	= ADDRESS
+
+EXTADDR
+	= ADDRESS
+
+STATE
+	= W+
+
+SOCKETS
+	= '稼働中のUNIXドメインソケット (サーバと確立)' _ EOL
+	  'Proto' _ 'RefCnt' _ 'Flags' _ 'Type' _ 'State' _ 'I-Node' _ 'パス' _ EOL
+	  ( SOCKETDATA _ EOL )*
+
+SOCKETDATA
+	= PROTOCOL _ REFCOUNT _ FLAGS _ TYPE _ (STATE)? _ INODE _ (PATH)?
+
+REFCOUNT
+	= INTEGER
+
+FLAGS
+	= '[' _ (W)* _ ']'
+
+TYPE
+	= W+
+
+INODE
+	= INTEGER
+
+PATH
+	= '@'? [-0-9A-Za-z_$ ./]+
+
