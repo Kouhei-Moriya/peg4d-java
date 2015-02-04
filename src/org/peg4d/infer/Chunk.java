@@ -86,9 +86,9 @@ public class Chunk {
 	protected List<MetaToken> tokenizeForMetaToken() {
 		List<MetaToken> metaTokenList = new ArrayList<>();
 		Pattern startPattern = TokenizedChunk.metaTokenStartPattern;
-		Map<String, Pattern> endPatternMap = TokenizedChunk.metaTokenEndPatternTable;
 		String text = this.getText();
-		Matcher startMatcher = startPattern.matcher(text), endMatcher = null;
+		Matcher startMatcher = startPattern.matcher(text);
+		MetaTokenMatcher endMatcher = null;//TokenizedChunk.metaTokenEndMatcherTable;
 		int startPos = 0;
 		while (startMatcher.find(startPos)) {
 			char c = startMatcher.group().charAt(0);
@@ -96,11 +96,12 @@ public class Chunk {
 			case '[':
 			case '"':
 			case '{':
-				endMatcher = endPatternMap.get(String.valueOf(c)).matcher(text);
+				endMatcher = TokenizedChunk.metaTokenEndMatcherTable.get(String.valueOf(c));
 				break;
 			default:
 				throw new RuntimeException("Tokenize error : not support meta token of " + c + " yet");
 			}
+			endMatcher.reset(text);
 			if (endMatcher.find(startMatcher.end())) {
 				metaTokenList.add(new MetaToken(
 						startMatcher.group() + "*" + endMatcher.group(),
@@ -117,16 +118,77 @@ public class Chunk {
 	}
 }
 
+class MetaTokenMatcher {
+	char startChar;
+	char endChar;
+	Pattern endPattern;
+	Matcher innerMatcher;
+	boolean escaped;
+	
+	MetaTokenMatcher(char startChar, char endChar) {
+		this(startChar, endChar, false);
+	}
+	MetaTokenMatcher(char startChar, char endChar, boolean doEscape) {
+		this.startChar = startChar;
+		this.endChar = endChar;
+		if (doEscape) {
+			this.endPattern = Pattern.compile("\\" + String.valueOf(startChar) + "|\\" + String.valueOf(endChar));
+		}
+		else {
+			this.endPattern = Pattern.compile(String.valueOf(startChar) + "|" + String.valueOf(endChar));
+		}
+		this.innerMatcher = this.endPattern.matcher("");
+		this.escaped = doEscape;
+	}
+	
+	void reset(String input) {
+		this.innerMatcher = this.innerMatcher.reset(input);
+	}
+	boolean find(int pos) {
+		int rec = 1;
+		Matcher matcher = this.innerMatcher;
+		while (matcher.find(pos)) {
+			if (matcher.group().equals(String.valueOf(this.endChar))) {
+				rec--;
+				if (rec == 0) {
+					return true;
+				}
+			}
+			else {
+				rec += 1;
+			}
+			pos = matcher.end();
+		}
+		return false;
+	}
+	String group() {
+		return this.innerMatcher.group();
+	}
+	int end() {
+		return this.innerMatcher.end();
+	}
+}
+
 class TokenizedChunk extends Chunk {
 	private List<SimpleToken> simpleTokenList = null;
 	private List<MetaToken> metaTokenList = null;
 	
-	public static final Pattern metaTokenStartPattern = Pattern.compile("[\\[\"{]");
-	public static final Map<String, Pattern> metaTokenEndPatternTable = new HashMap<>();
+	public static final Pattern metaTokenStartPattern;
+	public static final Map<String, MetaTokenMatcher> metaTokenEndMatcherTable = new HashMap<>();
 	static {
-		metaTokenEndPatternTable.put("\"", Pattern.compile("\""));
-		metaTokenEndPatternTable.put("[", Pattern.compile("\\]"));
-		metaTokenEndPatternTable.put("{", Pattern.compile("}"));
+		MetaTokenMatcher[] initializeList = {
+				new MetaTokenMatcher('{', '}', true),
+				new MetaTokenMatcher('[', ']', true),
+				new MetaTokenMatcher('\"', '\"', true),
+				new MetaTokenMatcher('\'', '\'', true),
+		};
+		StringBuilder builder = new StringBuilder();
+		for (MetaTokenMatcher matcher : initializeList) {
+			if (matcher.escaped) builder.append("\\");
+			builder.append(matcher.startChar);
+			metaTokenEndMatcherTable.put(String.valueOf(matcher.startChar), matcher);
+		}
+		metaTokenStartPattern = Pattern.compile("[" + builder.toString() + "]");
 	}
 
 	public void initialize(List<SimpleToken> simpleTokenList, List<MetaToken> metaTokenList) {
