@@ -10,7 +10,20 @@ public class Main {
 		Format fmt = null;
 		if (options.getOutputFileName() != null) {
 			fmt = engine.infer(options.getTarget());
-			engine.output(options.getOutputFileName(), fmt);
+			switch (options.getGenType()) {
+			case PEGJS:
+				engine.outputPegjs(options.getOutputFileName(), fmt);	
+				break;
+			case NEZ:
+				engine.outputNez(options.getOutputFileName(), fmt);	
+				break;
+			default:
+				throw new RuntimeException();
+			}
+		}
+		else {
+			fmt = engine.infer(options.getTarget());
+			engine.output(System.out, fmt);
 		}
 		if (options.getLogFileName() != null) {
 			long bestTime = Long.MAX_VALUE;
@@ -34,17 +47,18 @@ public class Main {
 			System.out.println(stat);
 			stat.output(options.getLogFileName());
 		}
-		else {
-			if (fmt == null) fmt = engine.infer(options.getTarget());
-			engine.output(System.out, fmt);
-		}
 		return;
 	}
 }
 
 class Options {
+	enum GenType {
+		PEGJS, NEZ
+	}
+	
 	private String grammar = null;
 	private String outputFileName = null;
+	private GenType genType = GenType.NEZ;
 	private String logFileName = null;
 	private String target = null;
 	private boolean verbose = false;
@@ -62,6 +76,8 @@ class Options {
 				s -> argsParser.printHelpBeforeExit(System.out, 0))
 		.addOption("v", "verbose", false, "verbose debug info",
 				s -> newOptions.verbose = true)
+		.addOption("js", "pegjs", false, "set output file type to pegjs",
+				s -> newOptions.genType = GenType.PEGJS)
 		.addOption("g", "grammar", true, "peg definition of target data format", true,
 				s -> newOptions.grammar = s.get())
 		.addOption("o", "output", true, "output file name", false,
@@ -108,6 +124,10 @@ class Options {
 
 	public String getOutputFileName() {
 		return this.outputFileName;
+	}
+	
+	public GenType getGenType() {
+		return this.genType;
 	}
 
 	public String getLogFileName() {

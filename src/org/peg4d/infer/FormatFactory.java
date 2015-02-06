@@ -22,8 +22,7 @@ public class FormatFactory {
 	Format create(SimpleTokenComparedByType token, List<Token<?>> delimSrc) {
 		String[] splitted = token.getType().ruleName.split("_");
 		if (splitted.length == 2) {
-			Integer.parseInt(splitted[1]);
-			return new NonTerminalFormat(token.getType().ruleName, delimSrc);
+			return new NonTerminalFormat(token.getType().ruleName, delimSrc, Integer.parseInt(splitted[1]));
 		}
 		else {
 			return new NonTerminalFormat(token.getType().ruleName);

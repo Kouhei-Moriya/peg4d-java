@@ -1,8 +1,10 @@
 package org.peg4d.infer;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -21,17 +23,19 @@ import org.peg4d.ParsingSource;
 public class Engine {
 	private final boolean verbose;
 	private final Grammar grammar;
+	private final String grammarFileName;
 	private final FormatFactory factory;
-	
+
 	private final double clusterTolerance;
 	private final double maxMass;
 	private final double minCoverage;
-	
+
 	public Engine(String grammarFileName, boolean verbose) {
 		this.grammar = new GrammarFactory().newGrammar("main", grammarFileName, null);
+		this.grammarFileName = grammarFileName;
 		this.factory = new FormatFactory(this);
 		this.verbose = verbose;
-		
+
 		this.clusterTolerance = 0.01;
 		this.maxMass = 0.01;
 		this.minCoverage = 0.01;
@@ -230,17 +234,35 @@ public class Engine {
 		return ret;
 	}
 	
-	public void output(String outputFileName, Format fmt) {
+	public void outputNez(String outputFileName, Format fmt) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("File\n  = {#File (@Chunk \"\\n\"?)+}\n");
+		builder.append("Chunk\n  = {#Chunk format0}\n");
+		this.output(outputFileName, fmt, builder.toString());
+	}
+	public void outputPegjs(String outputFileName, Format fmt) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("");
+		builder.append("start = File / Chunk\n");
+		builder.append("File\n  = (Chunk \"\\n\"?)+\n");
+		builder.append("Chunk\n  = f:format0 {console.log(f)}\n");
+		this.output(outputFileName, fmt, builder.toString());
+	}
+	
+	private void output(String outputFileName, Format fmt, String preface) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
-			writer.write("start = File / Chunk\n");
-			writer.write("File\n  = (Chunk \"\\n\"?)+\n");
-			writer.write("Chunk\n  = f:format0 {console.log(\"hoge\")}\n");
-			//writer.write("File\n  = {(@Chunk \"\\n\"?)+}\n");
-			//writer.write("Chunk\n  = {format0}\n");
-			for (CollectionFormat lfmt : collectListFormat(fmt)) {
-				writer.write(lfmt.getDefinition() + "\n");
+			writer.write(preface);
+			for (CollectionFormat col : collectListFormat(fmt)) {
+				writer.write(col.getDefinition() + "\n");
 			}
+			BufferedReader reader = new BufferedReader(new FileReader(this.grammarFileName));
+			int blockSize = 1024, readSize = 0;
+			char[] block = new char[blockSize];
+			while ((readSize = reader.read(block, 0, blockSize)) != -1) {
+				writer.write(block, 0, readSize);
+			}
+			reader.close();
 			writer.flush();
 			writer.close();
 		} catch (IOException e) {
@@ -248,6 +270,7 @@ public class Engine {
 			Main._Exit(1, "output file error : " + outputFileName);
 		}
 	}
+	
 	public void output(PrintStream stream, Format fmt) {
 		for (CollectionFormat lfmt : collectListFormat(fmt)) {
 			System.out.println(lfmt.getDefinition());

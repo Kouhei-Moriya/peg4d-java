@@ -1,9 +1,9 @@
 export
-  = Symbol
+  = Symbol_10
   / Int
   / ELSE
 
-Symbol
+Symbol_10
   = [a-zA-Z]+
 
 Int

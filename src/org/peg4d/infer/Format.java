@@ -29,6 +29,10 @@ abstract class CollectionFormat extends Format implements Iterable<Format> {
 	CollectionFormat(String name) {
 		this.name = name;
 	}
+	CollectionFormat(String name, Collection<Format> body) {
+		this.name = name;
+		this.body = body;
+	}
 	public void add(Format fmt) {
 		this.body.add(fmt);
 	}
@@ -71,6 +75,10 @@ class SeqFormat extends CollectionFormat {
 	SeqFormat(String name) {
 		super(name);
 		this.body = new ArrayList<>();
+		this.delimiter = " ";
+	}
+	SeqFormat(String name, List<Format> body) {
+		super(name, body);
 		this.delimiter = " ";
 	}
 
@@ -139,12 +147,11 @@ class ChoiceFormat extends CollectionFormat {
 	}
 
 	public Format refine() {
+		Format ret = null;
 		if (this.body.size() == 1) {
-			Format ret = null;
 			for (Format fmt : this.body) {
 				ret = fmt.refine();
 			}
-			return ret;
 		}
 		else {
 			ChoiceFormat choice = new ChoiceFormat(this.name);
@@ -152,14 +159,48 @@ class ChoiceFormat extends CollectionFormat {
 				fmt = fmt.refine();
 				choice.add(fmt);
 			}
-			if (choice.body.contains(EmptyFormat.getInstance())) {
-				return new OptionFormat(choice.name, choice.body);
+			if (choice.body.contains(EmptyFormat.getInstance())) choice = new OptionFormat(choice.name, choice.body);
+			ret = choice.putOutPreffixOrSuffix();
+		}
+		return ret;
+	}
+	Format putOutPreffixOrSuffix() {
+		if (!(this.body.size() >= 2)) return this;
+		List<Format> prefixes = new ArrayList<>();
+		List<Format> suffixes = new ArrayList<>();
+		List<List<Format>> bodies = new ArrayList<>();
+		SeqFormat tmp = null;
+		for (Format fmt : this.body) {
+			if (fmt instanceof SeqFormat) {
+				tmp = (SeqFormat)fmt;
+				if (!(tmp.body.size() >= 2)) return this;
+				prefixes.add(tmp.get(0));
+				suffixes.add(tmp.get(tmp.body.size() - 1));
+				bodies.add((List<Format>)tmp.body);
 			}
 			else {
-				return choice;
+				return this;
 			}
 		}
+		Set<Format> prefixSet = new HashSet<Format>(prefixes);
+		Set<Format> suffixSet = new HashSet<Format>(suffixes);
+		boolean prefixExists = prefixSet.size() == 1;
+		boolean suffixExists = suffixSet.size() == 1;
+		SeqFormat ret = new SeqFormat(this.name);
+		this.body.clear();
+		for (List<Format> body : bodies) {
+			int startPos = prefixExists ? 1 : 0;
+			int endPos = body.size();
+			if (suffixExists) endPos--;
+			this.body.add(new SeqFormat(null, body.subList(startPos, endPos)));
+		}
+		List<Format> body = bodies.get(0);
+		if (prefixExists) ret.add(body.get(0));
+		ret.add(this);
+		if (suffixExists) ret.add(body.get(body.size() - 1));
+		return ret;
 	}
+	
 	@Override
 	public int size() {
 		int ret = 0, tmp = 0;
@@ -252,6 +293,7 @@ class EmptyFormat extends TerminalFormat {
 class NonTerminalFormat extends Format {
 	String text;
 	List<Token<?>> src;
+	int variationMax;
 
 	public NonTerminalFormat(String text) {
 		if (text != null && !text.isEmpty()) {
@@ -262,9 +304,10 @@ class NonTerminalFormat extends Format {
 			throw new RuntimeException();
 		}
 	}
-	public NonTerminalFormat(String text, List<Token<?>> src) {
+	public NonTerminalFormat(String text, List<Token<?>> src, int variationMax) {
 		this(text);
 		this.src = src;
+		this.variationMax = variationMax;
 	}
 
 	@Override
@@ -293,15 +336,15 @@ class NonTerminalFormat extends Format {
 
 	@Override
 	public Format refine() {
-		if (this.src == null) {
-			return this;	
-		}
-		else {
+		if (this.src != null) {
 			ChoiceFormat ret = new ChoiceFormat(null);
 			for (Token<?> token : this.src) {
 				ret.add(new TerminalFormat(token.getValue()));
 			}
-			return ret.refine();
+			if (ret.body.size() < this.variationMax) {
+				return ret.refine();
+			}
 		}
+		return this;
 	}
 }
