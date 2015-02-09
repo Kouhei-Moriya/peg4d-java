@@ -38,7 +38,7 @@ public class Engine {
 
 		this.clusterTolerance = 0.01;
 		this.maxMass = 0.01;
-		this.minCoverage = 0.01;
+		this.minCoverage = 0.9;
 	}
 
 	public Format infer(String filePath) {
