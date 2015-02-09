@@ -8,7 +8,7 @@ public class Utils {
 	public final static ParsingSource newStringSource(String name, long linenum, String text) {
 		return new StringSource(name, linenum, text);
 	}
-
+	
 	public final static String quoteString(char OpenChar, String Text, char CloseChar) {
 		StringBuilder sb = new StringBuilder();
 		Utils.formatQuoteString(sb, OpenChar, Text, CloseChar);

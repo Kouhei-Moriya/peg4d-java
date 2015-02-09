@@ -21,7 +21,7 @@ def generate_test_files():
             subprocess.call(command, shell=True)
 
 def stat():
-    command_base = "java -jar nez-0.9.1.jar -g sample/tokenize.p4d -l {log} -t {target}"
+    command_base = "java -jar nez-0.9.3.jar -g sample/tokenize.p4d -l {log} -t {target}"
     for path in os.listdir(TMP_DIR):
         full_path = os.path.join(TMP_DIR, path)
         if not os.path.isfile(full_path): continue

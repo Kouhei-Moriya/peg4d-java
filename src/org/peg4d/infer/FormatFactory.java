@@ -20,12 +20,12 @@ public class FormatFactory {
 	}
 
 	Format create(SimpleTokenComparedByType token, List<Token<?>> delimSrc) {
-		String[] splitted = token.getType().ruleName.split("_");
+		String[] splitted = token.getType().localName.split("_");
 		if (splitted.length == 2) {
-			return new NonTerminalFormat(token.getType().ruleName, delimSrc, Integer.parseInt(splitted[1]));
+			return new NonTerminalFormat(token.getType().localName, delimSrc, Integer.parseInt(splitted[1]));
 		}
 		else {
-			return new NonTerminalFormat(token.getType().ruleName);
+			return new NonTerminalFormat(token.getType().localName);
 		}
 	}
 	Format create(SimpleTokenComparedByValue token) {

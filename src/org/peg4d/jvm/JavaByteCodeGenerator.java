@@ -29,7 +29,6 @@ import org.peg4d.expression.ParsingConnector;
 import org.peg4d.expression.ParsingConstructor;
 import org.peg4d.expression.ParsingDef;
 import org.peg4d.expression.ParsingEmpty;
-import org.peg4d.expression.ParsingExport;
 import org.peg4d.expression.ParsingExpression;
 import org.peg4d.expression.ParsingFailure;
 import org.peg4d.expression.ParsingIf;
@@ -38,22 +37,23 @@ import org.peg4d.expression.ParsingIs;
 import org.peg4d.expression.ParsingIsa;
 import org.peg4d.expression.ParsingList;
 import org.peg4d.expression.ParsingMatch;
-import org.peg4d.expression.ParsingMatcher;
 import org.peg4d.expression.ParsingNot;
 import org.peg4d.expression.ParsingOption;
-import org.peg4d.expression.ParsingPermutation;
+import org.peg4d.expression.ParsingRepeat;
 import org.peg4d.expression.ParsingRepetition;
+import org.peg4d.expression.ParsingScan;
 import org.peg4d.expression.ParsingSequence;
 import org.peg4d.expression.ParsingString;
 import org.peg4d.expression.ParsingTagging;
 import org.peg4d.expression.ParsingValue;
 import org.peg4d.expression.ParsingWithFlag;
 import org.peg4d.expression.ParsingWithoutFlag;
+import org.peg4d.expression.Recognizer;
 import org.peg4d.jvm.ClassBuilder.MethodBuilder;
 import org.peg4d.jvm.ClassBuilder.VarEntry;
-import org.peg4d.pegcode.GrammarFormatter;
+import org.peg4d.pegcode.GrammarGenerator;
 
-public class JavaByteCodeGenerator extends GrammarFormatter implements Opcodes {
+public class JavaByteCodeGenerator extends GrammarGenerator implements Opcodes {
 	private final static String packagePrefix = "org/peg4d/generated/";
 
 	private static int nameSuffix = -1;
@@ -143,7 +143,7 @@ public class JavaByteCodeGenerator extends GrammarFormatter implements Opcodes {
 	public void formatGrammar(Grammar peg, StringBuilder sb) {
 		this.formatHeader();
 		for(ParsingRule r: peg.getRuleList()) {
-			String methodName = this.checkAndReplaceRuleName(r.ruleName);
+			String methodName = this.checkAndReplaceRuleName(r.localName);
 			this.createMethod(methodName, r.expr);
 			r.expr = new EntryPoint(methodName);
 		}
@@ -199,7 +199,7 @@ public class JavaByteCodeGenerator extends GrammarFormatter implements Opcodes {
 	private void generateFailure() {
 		this.mBuilder.loadFromVar(this.entry_context);
 		this.mBuilder.pushNull();
-		this.mBuilder.callInstanceMethod(ParsingContext.class, void.class, "failure", ParsingMatcher.class);
+		this.mBuilder.callInstanceMethod(ParsingContext.class, void.class, "failure", Recognizer.class);
 	}
 
 	/**
@@ -688,10 +688,10 @@ public class JavaByteCodeGenerator extends GrammarFormatter implements Opcodes {
 		this.mBuilder.exitScope();
 	}
 
-	@Override
-	public void visitExport(ParsingExport e) {	//TODO:
-		this.mBuilder.push(true);
-	}
+//	@Override
+//	public void visitExport(ParsingExport e) {	//TODO:
+//		this.mBuilder.push(true);
+//	}
 
 	@Override
 	public void visitSequence(ParsingSequence e) {
@@ -824,7 +824,7 @@ public class JavaByteCodeGenerator extends GrammarFormatter implements Opcodes {
 		
 		// call objectId
 		this.mBuilder.loadFromVar(entry_startIndex);
-		this.mBuilder.push(e.uniqueId);
+		this.mBuilder.push(e.internId);
 		this.mBuilder.callStaticMethod(ParsingUtils.class, 
 				long.class, "objectId", long.class, short.class);
 
@@ -1112,16 +1112,28 @@ public class JavaByteCodeGenerator extends GrammarFormatter implements Opcodes {
 		throw new RuntimeException("unimplemented visit method: " + e.getClass());
 	}
 
-	@Override
-	public void visitPermutation(ParsingPermutation e) {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("unimplemented visit method: " + e.getClass());
-	}
+//	@Override
+//	public void visitPermutation(ParsingPermutation e) {
+//		// TODO Auto-generated method stub
+//		throw new RuntimeException("unimplemented visit method: " + e.getClass());
+//	}
 
 	@Override
 	public void visitIs(ParsingIs e) {
 		this.mBuilder.loadFromVar(this.entry_context);
 		this.mBuilder.push(ParsingTag.tagId(e.getParameters().substring(1)));
 		this.mBuilder.callInstanceMethod(ParsingContext.class, boolean.class, "matchSymbolTableTop", int.class);
+	}
+
+	@Override
+	public void visitScan(ParsingScan e) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	@Override
+	public void visitRepeat(ParsingRepeat e) {
+		// TODO 自動生成されたメソッド・スタブ
+		
 	}
 }

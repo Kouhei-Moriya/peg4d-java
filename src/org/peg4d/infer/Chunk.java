@@ -8,11 +8,13 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import nez.util.UList;
+
 import org.peg4d.Grammar;
 import org.peg4d.ParsingContext;
+import org.peg4d.ParsingObject;
 import org.peg4d.ParsingRule;
 import org.peg4d.ParsingSource;
-import org.peg4d.UList;
 
 public class Chunk {
 	protected String text;
@@ -70,7 +72,7 @@ public class Chunk {
 		while (startPos < length) {
 			matchedPattern = null;
 			for (ParsingRule rule : ruleList) {
-				context.parse(grammar, rule.ruleName);
+				context.parse2(grammar, rule.localName, new ParsingObject(), null);
 				if (!context.isFailure()) {
 					matchedPattern = rule;
 					break;

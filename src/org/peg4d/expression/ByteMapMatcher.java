@@ -2,7 +2,7 @@ package org.peg4d.expression;
 
 import org.peg4d.ParsingContext;
 
-public class ByteMapMatcher extends ParsingMatcher {
+public class ByteMapMatcher implements Recognizer {
 	public boolean bitMap[];
 	ByteMapMatcher(int[] c) {
 		this.bitMap = new boolean[257];
@@ -15,12 +15,7 @@ public class ByteMapMatcher extends ParsingMatcher {
 	ByteMapMatcher(int beginChar, int endChar) {
 		this.bitMap = new boolean[257];
 		for(int i = 0; i < 256; i++) {
-			if(beginChar <= i && i <= endChar) {
-				this.bitMap[i] = true;
-			}
-			else {
-				this.bitMap[i] = false;
-			}
+			this.bitMap[i] = (beginChar <= i && i <= endChar);
 		}
 	}
 	ByteMapMatcher(int NotChar) {
@@ -38,7 +33,7 @@ public class ByteMapMatcher extends ParsingMatcher {
 		this.bitMap[256] = eof;
 	}
 	@Override
-	public boolean simpleMatch(ParsingContext context) {
+	public boolean match(ParsingContext context) {
 		int c = context.source.byteAt(context.pos);
 		if(this.bitMap[c]) {
 			context.consume(1);

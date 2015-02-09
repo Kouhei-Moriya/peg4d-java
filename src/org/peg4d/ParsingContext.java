@@ -2,13 +2,20 @@ package org.peg4d;
 
 import java.util.HashMap;
 
+import nez.util.UList;
+
 import org.peg4d.expression.NonTerminal;
 import org.peg4d.expression.ParsingConstructor;
 import org.peg4d.expression.ParsingExpression;
-import org.peg4d.expression.ParsingMatcher;
+import org.peg4d.expression.Recognizer;
 
 public class ParsingContext {
 	public ParsingSource source;
+
+	/* parsing position */
+	public long pos;
+	long   head_pos;
+
 	NezLogger    stat   = null;
 	
 	public ParsingContext(ParsingSource s, long pos, int stacksize, MemoTable memo) {
@@ -29,10 +36,6 @@ public class ParsingContext {
 		this.initCallStack();
 	}
 
-	/* parsing position */
-	public long pos;
-	long head_pos;
-	
 	public final long getPosition() {
 		return this.pos;
 	}
@@ -61,20 +64,28 @@ public class ParsingContext {
 	public long fpos;
 	StackTrace maximumFailureTrace = null;
 	String failureInfo  = null;	
-	ParsingMatcher[] errorbuf = new ParsingMatcher[512];
+	Recognizer[] errorbuf = new Recognizer[512];
 	long[] posbuf = new long[errorbuf.length];
 
 	public final boolean isFailure() {
 		return this.left == null;
 	}
 	
-	public final void failure(ParsingMatcher errorInfo) {
+	public final void failure(Recognizer errorInfo) {
 		if(this.pos > fpos) {  // adding error location
 			this.fpos = this.pos;
 		}
 		this.left = null;
 	}
 	
+	public boolean failure2(nez.expr.Expression e) {
+		if(this.pos > fpos) {  // adding error location
+			this.fpos = this.pos;
+		}
+		this.left = null;
+		return false;
+	}
+
 	public final long rememberFailure() {
 		return this.fpos;
 	}
@@ -86,7 +97,7 @@ public class ParsingContext {
 //		this.fpos = fpos;
 	}
 	
-	private ParsingMatcher getErrorInfo(long fpos) {
+	private Recognizer getErrorInfo(long fpos) {
 		int index = (int)this.pos % errorbuf.length;
 		if(posbuf[index] == fpos) {
 			return errorbuf[index];
@@ -110,28 +121,29 @@ public class ParsingContext {
 //	}
 
 	public String getErrorMessage() {
-		ParsingMatcher errorInfo = this.getErrorInfo(this.fpos);
+		Recognizer errorInfo = this.getErrorInfo(this.fpos);
 		if(errorInfo == null) {
 			return "syntax error";
 		}
-		return "syntax error: expecting " + errorInfo.expectedToken() + " <- Never believe this";
+		return "syntax error: expecting " + errorInfo.toString() + " <- Never believe this";
 	}
 	
 	
 	
 	/* PEG4d : AST construction */
 
-	public ParsingObject left;
-	ParsingTag    emptyTag;	
+	private ParsingTree base;
+	public ParsingTree left;
 
-	public final ParsingObject newParsingObject(long pos, ParsingConstructor created) {
-		return new ParsingObject(this.emptyTag, this.source, pos, created);
+	public final ParsingTree newParsingTree(long pos, ParsingConstructor created) {
+		return this.base.newParsingTree(this.source, pos, created);
 	}
 
 	private class ParsingLog {
 		ParsingLog next;
+		ParsingTree parentNode;
 		int  index;
-		ParsingObject childNode;
+		ParsingTree childNode;
 	}
 
 	private ParsingLog logStack = null;
@@ -158,17 +170,17 @@ public class ParsingContext {
 		return logStackSize;
 	}
 
-	public final void lazyLink(ParsingObject parent, int index, ParsingObject child) {
+	public final void lazyLink(ParsingTree parent, int index, ParsingTree child) {
 		ParsingLog l = this.newLog();
+		l.parentNode = parent;
 		l.childNode  = child;
-		child.parent = parent;
 		l.index = index;
 		l.next = this.logStack;
 		this.logStack = l;
 		this.logStackSize += 1;
 	}
 	
-	public final void lazyJoin(ParsingObject left) {
+	public final void lazyJoin(ParsingTree left) {
 		ParsingLog l = this.newLog();
 		l.childNode  = left;
 		l.index = -9;
@@ -177,15 +189,15 @@ public class ParsingContext {
 		this.logStackSize += 1;
 	}
 
-	private final void checkNullEntry(ParsingObject o) {
-		for(int i = 0; i < o.size(); i++) {
-			if(o.get(i) == null) {
-				o.set(i, new ParsingObject(emptyTag, this.source, 0));
-			}
-		}
-	}
+//	private final void checkNullEntry(ParsingTree o) {
+//		for(int i = 0; i < o.size(); i++) {
+//			if(o.get(i) == null) {
+//				o.set(i, new ParsingTree(emptyTag, this.source, 0));
+//			}
+//		}
+//	}
 
-	public final void commitLog(int mark, ParsingObject newnode) {
+	public final void commitLog(int mark, ParsingTree newnode) {
 		ParsingLog first = null;
 		int objectSize = 0;
 		while(mark < this.logStackSize) {
@@ -197,7 +209,7 @@ public class ParsingContext {
 				unuseLog(cur);
 				break;
 			}
-			if(cur.childNode.parent == newnode) {
+			if(cur.parentNode == newnode) {
 				cur.next = first;
 				first = cur;
 				objectSize += 1;
@@ -214,10 +226,10 @@ public class ParsingContext {
 				if(cur.index == -1) {
 					cur.index = i;
 				}
-				newnode.set(cur.index, cur.childNode);
+				newnode.commitChild(cur.index, cur.childNode);
 				this.unuseLog(cur);
 			}
-			checkNullEntry(newnode);
+			//checkNullEntry(newnode);
 		}
 	}
 	
@@ -306,53 +318,81 @@ public class ParsingContext {
 		return this.source.byteAt(pos);
 	}
 		
-	public final ParsingObject parseChunk(Grammar peg, String startPoint) {
-		this.initMemo(null);
-		ParsingExpression start = peg.getExpression(startPoint);
-		if(start == null) {
-			Main._Exit(1, "undefined start rule: " + startPoint );
-		}
-		long spos = this.getPosition();
-		long fpos = 0;
-		this.emptyTag = peg.newStartTag();
-		ParsingObject po = new ParsingObject(this.emptyTag, this.source, 0);
-		while(hasByteChar()) {
-			long ppos = this.getPosition();
-			po.setSourcePosition(this.pos);
-			this.left = po;
-			start.debugMatch(this);
-			if(this.isFailure() || ppos == this.getPosition()) {
-				if(fpos == -1) {
-					fpos = this.fpos;
-				}
-				this.consume(1);
-				continue;
-			}
-			if(spos < ppos) {
-				System.out.println(source.formatPositionLine("error", fpos, "syntax error"));
-				System.out.println("skipped[" + spos + "]: " + this.source.substring(spos, ppos));
-			}
-			checkUnusedText(po);
-			return this.left;
-		}
-		return null;
-	}
+//	public final ParsingTree parseChunk(Grammar peg, String startPoint) {
+//		this.initMemo(null);
+//		ParsingExpression start = peg.getExpression(startPoint);
+//		if(start == null) {
+//			Main._Exit(1, "undefined start rule: " + startPoint );
+//		}
+//		long spos = this.getPosition();
+//		long fpos = 0;
+//		this.emptyTag = peg.newStartTag();
+//		ParsingTree po = new ParsingTree(this.emptyTag, this.source, 0);
+//		while(hasByteChar()) {
+//			long ppos = this.getPosition();
+//			po.setSourcePosition(this.pos);
+//			this.left = po;
+//			start.debugMatch(this);
+//			if(this.isFailure() || ppos == this.getPosition()) {
+//				if(fpos == -1) {
+//					fpos = this.fpos;
+//				}
+//				this.consume(1);
+//				continue;
+//			}
+//			if(spos < ppos) {
+//				System.out.println(source.formatPositionLine("error", fpos, "syntax error"));
+//				System.out.println("skipped[" + spos + "]: " + this.source.substring(spos, ppos));
+//			}
+//			checkUnusedText(po);
+//			return this.left;
+//		}
+//		return null;
+//	}
 	
-	private final void checkUnusedText(ParsingObject po) {
+	private final void checkUnusedText(ParsingTree po) {
 		if(this.left == po) {
-			po.setEndPosition(this.pos);
+			po.setEndingPosition(this.pos);
 		}
 	}
 
-	public final ParsingObject parseChunk(Grammar peg) {
-		return this.parseChunk(peg, "Chunk");
-	}
+//	public final ParsingTree parseChunk(Grammar peg) {
+//		return this.parseChunk(peg, "Chunk");
+//	}
 
-	public final ParsingObject parse(Grammar peg, String startPoint) {
-		return this.parse(peg, startPoint, null);
-	}
-
-	public final ParsingObject parse(Grammar peg, String startPoint, MemoizationManager conf) {
+//	public final ParsingTree parse(Grammar peg, String startPoint) {
+//		return this.parse(peg, startPoint, null);
+//	}
+//
+//	public final ParsingTree parse(Grammar peg, String startPoint, MemoizationManager conf) {
+//		ParsingRule start = peg.getRule(startPoint);
+//		if(start == null) {
+//			Main._Exit(1, "undefined start rule: " + startPoint );
+//		}
+//		if(conf != null) {
+//			conf.exploitMemo(start);
+//			this.initMemo(conf);
+//		}
+//		this.emptyTag = peg.newStartTag();
+//		ParsingTree po = new ParsingTree(this.emptyTag, this.source, 0);
+//		this.left = po;
+//		if(start.expr.debugMatch(this)) {
+//			this.commitLog(0, this.left);
+//		}
+//		else {
+//			this.abortLog(0);
+//			this.unusedLog = null;
+//		}
+//		checkUnusedText(po);
+//		if(conf != null) {
+//			conf.removeMemo(start);
+//			conf.show2(this.stat);
+//		}
+//		return this.left;
+//	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends ParsingTree> T parse2(Grammar peg, String startPoint, T base, MemoizationManager conf) {
 		ParsingRule start = peg.getRule(startPoint);
 		if(start == null) {
 			Main._Exit(1, "undefined start rule: " + startPoint );
@@ -361,8 +401,8 @@ public class ParsingContext {
 			conf.exploitMemo(start);
 			this.initMemo(conf);
 		}
-		this.emptyTag = peg.newStartTag();
-		ParsingObject po = new ParsingObject(this.emptyTag, this.source, 0);
+		this.base = base;
+		ParsingTree po = newParsingTree(this.pos, null);
 		this.left = po;
 		if(start.expr.debugMatch(this)) {
 			this.commitLog(0, this.left);
@@ -376,7 +416,7 @@ public class ParsingContext {
 			conf.removeMemo(start);
 			conf.show2(this.stat);
 		}
-		return this.left;
+		return (T)this.left;
 	}
 
 	public final boolean match(Grammar peg, String startPoint, MemoizationManager conf) {
@@ -390,9 +430,8 @@ public class ParsingContext {
 			this.initMemo(conf);
 		}
 		start = r.expr;
-		this.emptyTag = peg.newStartTag();
-		ParsingObject po = new ParsingObject(this.emptyTag, this.source, 0);
-		this.left = po;
+		this.base = new ParsingObject();
+		this.left = this.base;
 		boolean res = start.debugMatch(this);
 		if(conf != null) {
 			conf.removeMemo(r);
@@ -449,18 +488,19 @@ public class ParsingContext {
 			this.stackedPositions = new int[4096];
 		}
 	}
+		
+	public final boolean matchNonTerminal(NonTerminal e) {
+		if(this.stackedNonTerminals != null) {
+			int pos = this.stackedNonTerminals.size();
+			this.stackedNonTerminals.add(e);
+			stackedPositions[pos] = (int)this.pos;
+			boolean b = e.deReference().matcher.match(this);
+			this.stackedNonTerminals.clear(pos);
+			return b;
+		}
+		return e.deReference().matcher.match(this);
+	}
 	
-	public int pushCallStack(NonTerminal e) {
-		int pos = this.stackedNonTerminals.size();
-		this.stackedNonTerminals.add(e);
-		stackedPositions[pos] = (int)this.pos;
-		return pos;
-	}
-
-	public void popCallStack(int stacktop) {
-		this.stackedNonTerminals.clear(stacktop);
-	}
- 		
 	protected MemoTable memoTable = null;
 
 	public void initMemo(MemoizationManager conf) {
@@ -471,7 +511,7 @@ public class ParsingContext {
 		return this.memoTable.getMemo(keypos, memoPoint);
 	}
 
-	final void setMemo(long keypos, int memoPoint, ParsingObject result, int length) {
+	final void setMemo(long keypos, int memoPoint, ParsingTree result, int length) {
 		this.memoTable.setMemo(keypos, memoPoint, result, length);
 	}
 
@@ -479,7 +519,7 @@ public class ParsingContext {
 		return this.memoTable.getMemo2(keypos, memoPoint, stateValue);
 	}
 
-	final void setMemo2(long keypos, int memoPoint, int stateValue, ParsingObject result, int length) {
+	final void setMemo2(long keypos, int memoPoint, int stateValue, ParsingTree result, int length) {
 		this.memoTable.setMemo2(keypos, memoPoint, stateValue, result, length);
 	}
 	
@@ -497,6 +537,20 @@ public class ParsingContext {
 		return f == null || f.booleanValue();
 	}
 
-		
+	HashMap<String, Integer> repeatMap = new HashMap<String, Integer>();
+	
+	public final void setRepeatExpression(String rule, int value) {
+		this.repeatMap.put(rule, value);
+	}
+	
+	public final int getRepeatValue(String rule) {
+		return this.repeatMap.get(rule);
+	}
+	
+	public final String getRepeatByteString(long startIndex) {
+		return this.source.substring(startIndex, this.pos);
+	}
+
+
 }
 

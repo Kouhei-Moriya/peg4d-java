@@ -14,8 +14,8 @@ import org.peg4d.expression.ParsingCatch;
 import org.peg4d.expression.ParsingChoice;
 import org.peg4d.expression.ParsingConnector;
 import org.peg4d.expression.ParsingConstructor;
+import org.peg4d.expression.ParsingDef;
 import org.peg4d.expression.ParsingEmpty;
-import org.peg4d.expression.ParsingExport;
 import org.peg4d.expression.ParsingExpression;
 import org.peg4d.expression.ParsingFailure;
 import org.peg4d.expression.ParsingIf;
@@ -23,11 +23,11 @@ import org.peg4d.expression.ParsingIndent;
 import org.peg4d.expression.ParsingIs;
 import org.peg4d.expression.ParsingIsa;
 import org.peg4d.expression.ParsingMatch;
-import org.peg4d.expression.ParsingDef;
 import org.peg4d.expression.ParsingNot;
 import org.peg4d.expression.ParsingOption;
-import org.peg4d.expression.ParsingPermutation;
+import org.peg4d.expression.ParsingRepeat;
 import org.peg4d.expression.ParsingRepetition;
+import org.peg4d.expression.ParsingScan;
 import org.peg4d.expression.ParsingSequence;
 import org.peg4d.expression.ParsingString;
 import org.peg4d.expression.ParsingTagging;
@@ -35,7 +35,7 @@ import org.peg4d.expression.ParsingValue;
 import org.peg4d.expression.ParsingWithFlag;
 import org.peg4d.expression.ParsingWithoutFlag;
 
-public class CGenerator2 extends GrammarFormatter {
+public class CGenerator2 extends GrammarGenerator {
 
 	@Override
 	public String getDesc() {
@@ -77,7 +77,7 @@ public class CGenerator2 extends GrammarFormatter {
 		fID += 1;
 	}
 	void popFailureJumpPoint(ParsingRule r) {
-		writeLine("CATCH_FAILURE" + fLabel.id + ":" + "/* " + r.ruleName + " */");
+		writeLine("CATCH_FAILURE" + fLabel.id + ":" + "/* " + r.localName + " */");
 		fLabel = fLabel.prev;
 	}
 	void popFailureJumpPoint(ParsingExpression e) {
@@ -154,6 +154,7 @@ public class CGenerator2 extends GrammarFormatter {
 		writeLine("        }");
 		writeLine("        P4D_commitLog(&context, 0, context.left);");
 		writeLine("        dump_pego(context.left, context.inputs, 0);");
+		writeLine("        ParsingContext_Dispose(&context);");
 		writeLine("    }");
 		writeLine("    else if(!strcmp(output_type, \"stat\")) {");
 		writeLine("        for (int i = 0; i < 20; i++) {");
@@ -176,13 +177,13 @@ public class CGenerator2 extends GrammarFormatter {
 	public void formatGrammar(Grammar peg, StringBuilder sb) {
 		this.formatHeader();
 		for(ParsingRule r: peg.getRuleList()) {
-			if (!r.ruleName.startsWith("\"")) {
-				this.writeLine("int " + funcName(r.ruleName) + "(ParsingContext c);");
+			if (!r.localName.startsWith("\"")) {
+				this.writeLine("int " + funcName(r.localName) + "(ParsingContext c);");
 			}
 		}
 		this.generateMainFunction();
 		for(ParsingRule r: peg.getRuleList()) {
-			if (!r.ruleName.startsWith("\"")) {
+			if (!r.localName.startsWith("\"")) {
 				this.formatRule(r, sb);
 			}
 		}
@@ -200,7 +201,7 @@ public class CGenerator2 extends GrammarFormatter {
 	@Override
 	public void visitRule(ParsingRule e) {
 		this.initFailureJumpPoint();
-		writeLine("int " + funcName(e.ruleName) + "(ParsingContext c)");
+		writeLine("int " + funcName(e.localName) + "(ParsingContext c)");
 		openIndent();
 		let("long", "pos", "c->pos");
 
@@ -364,6 +365,7 @@ public class CGenerator2 extends GrammarFormatter {
 		if(e.leftJoin) {
 			//context.lazyJoin(context.left);
 			//context.lazyLink(newnode, 0, context.left);
+			//writeLine("ParsingObject", leftName, "P4D_setObject(c, &c->left, P4D_newObject(c, c->pos))");
 			writeLine("P4D_lazyJoin(c, "+ leftName +");");
 			writeLine("P4D_lazyLink(c, c->left, 0, " + leftName + ");");
 		}
@@ -417,18 +419,6 @@ public class CGenerator2 extends GrammarFormatter {
 	@Override
 	public void visitValue(ParsingValue e) {
 		writeLine("c->left->value = \"" + e.value + "\";");
-	}
-
-	@Override
-	public void visitExport(ParsingExport e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitMatch(ParsingMatch e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -491,14 +481,32 @@ public class CGenerator2 extends GrammarFormatter {
 		
 	}
 
+//	@Override
+//	public void visitPermutation(ParsingPermutation e) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
 	@Override
-	public void visitPermutation(ParsingPermutation e) {
+	public void visitIs(ParsingIs e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitIs(ParsingIs e) {
+	public void visitScan(ParsingScan e) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	@Override
+	public void visitRepeat(ParsingRepeat e) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	@Override
+	public void visitMatch(ParsingMatch e) {
 		// TODO Auto-generated method stub
 		
 	}

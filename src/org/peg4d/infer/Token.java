@@ -44,7 +44,7 @@ class SimpleToken extends Token<ParsingRule> {
 	}
 	
 	static SimpleToken create(ParsingRule type, long startPos, long endPos, ParsingSource baseSource) {
-		if (type.ruleName.equals(type.ruleName.toUpperCase())) {
+		if (type.localName.equals(type.localName.toUpperCase())) {
 			return new SimpleTokenComparedByValue(type, startPos, endPos, baseSource);
 		}
 		else {
@@ -107,7 +107,7 @@ class SimpleTokenComparedByType extends SimpleToken {
 	
 	@Override
 	public String toString() {
-		return this.type.ruleName;
+		return this.type.localName;
 	}
 }
 
