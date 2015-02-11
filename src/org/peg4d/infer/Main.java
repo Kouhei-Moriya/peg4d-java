@@ -1,5 +1,8 @@
 package org.peg4d.infer;
 
+import org.peg4d.ParsingContext;
+import org.peg4d.ParsingObject;
+import org.peg4d.ParsingSource;
 import org.peg4d.query.ArgumentsParser;
 
 public class Main {
@@ -62,6 +65,7 @@ class Options {
 	private String logFileName = null;
 	private String target = null;
 	private boolean verbose = false;
+	boolean correctness = false;
 
 	private String cache = null;
 	
