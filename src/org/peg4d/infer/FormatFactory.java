@@ -19,6 +19,9 @@ public class FormatFactory {
 		return EmptyFormat.getInstance();
 	}
 
+	Format create(SimpleTokenComparedByType token) {
+		return new NonTerminalFormat(token.getType().localName);
+	}
 	Format create(SimpleTokenComparedByType token, List<Token<?>> delimSrc) {
 		String[] splitted = token.getType().localName.split("_");
 		if (splitted.length == 2) {
@@ -88,11 +91,28 @@ public class FormatFactory {
 		}
 	}
 
+	Format create(Chunk chunk) {
+		SeqFormat ret = new SeqFormat(this.newName());
+		for (SimpleToken token : ((TokenizedChunk)chunk).getSimpleTokenList()) {
+			if (token instanceof SimpleTokenComparedByType) {
+				ret.add(this.create((SimpleTokenComparedByType)token));	
+			}
+			else if (token instanceof SimpleTokenComparedByValue) {
+				ret.add(this.create((SimpleTokenComparedByValue)token));	
+			}
+			else {
+				throw new RuntimeException();
+			}
+		}
+		return ret;
+	}
+	
 	Format create(List<Branch> groupedBranches) {
 		ChoiceFormat fmt = new ChoiceFormat(this.newName());
 		if (groupedBranches.size() == 1) {
 			for (Chunk chunk : groupedBranches.get(0)) {
-				fmt.add(this.create(chunk.getText()));
+				fmt.add(this.create(chunk));
+				//fmt.add(this.create(chunk.getText()));
 			}
 		}
 		else {

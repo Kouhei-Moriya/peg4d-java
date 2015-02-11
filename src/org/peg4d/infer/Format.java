@@ -115,6 +115,24 @@ class SeqFormat extends CollectionFormat {
 			return seq;
 		}
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		else if (!(obj instanceof SeqFormat)) {
+			return false;
+		}
+		else {
+			return this.body.equals(((SeqFormat)obj).body);
+		}
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.body.hashCode();
+	}
 }
 
 class ChoiceFormat extends CollectionFormat {
@@ -157,10 +175,19 @@ class ChoiceFormat extends CollectionFormat {
 			ChoiceFormat choice = new ChoiceFormat(this.name);
 			for (Format fmt : this.body) {
 				fmt = fmt.refine();
-				choice.add(fmt);
+				if (fmt instanceof CollectionFormat && ((CollectionFormat)fmt).body.size() == 0) {
+					//pass
+				}
+				else {
+					choice.add(fmt);
+				}
 			}
-			if (choice.body.contains(EmptyFormat.getInstance())) choice = new OptionFormat(choice.name, choice.body);
-			ret = choice.putOutPreffixOrSuffix();
+			if (choice.body.contains(EmptyFormat.getInstance())) {
+				ret = new OptionFormat(choice.name, choice.body);
+			}
+			else {
+				ret = choice.putOutPreffixOrSuffix();
+			}
 		}
 		return ret;
 	}
@@ -192,7 +219,8 @@ class ChoiceFormat extends CollectionFormat {
 			int startPos = prefixExists ? 1 : 0;
 			int endPos = body.size();
 			if (suffixExists) endPos--;
-			this.body.add(new SeqFormat(null, body.subList(startPos, endPos)));
+			SeqFormat seqTmp = new SeqFormat(null, body.subList(startPos, endPos));
+			if (seqTmp.body.size() != 0) this.body.add(seqTmp);
 		}
 		List<Format> body = bodies.get(0);
 		if (prefixExists) ret.add(body.get(0));

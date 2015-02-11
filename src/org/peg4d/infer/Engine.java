@@ -16,6 +16,8 @@ import java.util.Set;
 import org.peg4d.Grammar;
 import org.peg4d.GrammarFactory;
 import org.peg4d.Main;
+import org.peg4d.ParsingContext;
+import org.peg4d.ParsingObject;
 import org.peg4d.ParsingSource;
 
 public class Engine {
@@ -39,6 +41,23 @@ public class Engine {
 		this.minCoverage = 0.9;
 	}
 
+	public void calcCorrectness(String filePath) {
+		int successCount = 0;
+		List<Chunk> chunks = this.chunking(org.peg4d.ParsingSource.loadSource(filePath));
+		for (Chunk chunk : chunks) {
+			ParsingSource source = chunk.baseSource;
+			ParsingContext context = new ParsingContext(source);
+			ParsingObject po = context.parse2(this.grammar, "Chunk", new ParsingObject(), null);
+			if(context.isFailure()) {
+				//pass
+			}
+			else {
+				successCount++;
+			}
+		}
+		System.out.println((float)successCount / chunks.size());
+	}
+	
 	public Format infer(String filePath) {
 		ParsingSource source = org.peg4d.ParsingSource.loadSource(filePath);
 		List<Chunk> chunks = this.chunking(source);

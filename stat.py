@@ -55,23 +55,18 @@ def stat_for_speeds(target_file):
 
 def stat_for_correctness(target_file):
     command_infer = "java -jar nez-0.9.3.jar -g sample/tokenize.p4d -t {target} -o tmp.p4d"
-    command_check = "java -jar master.jar check -p tmp.p4d -s {target}"
+    command_check = "java -jar nez-0.9.3.jar -g tmp.p4d -t {target} -c"
+    ret = target_file + ","
     for path in os.listdir(TMP_DIR):
         full_path = os.path.join(TMP_DIR, path)
         if not os.path.isfile(full_path): continue
         if path.startswith("."): continue
         if path.startswith(target_file) and path.endswith(".small"):
             command = command_infer.format(target=full_path)
-            print(command)
-            #subprocess.call(command, shell=True)
-            for line in open(os.path.join(TEST_DIR, target_file)):
-                print(line)
-            #subprocess.call()
-    # full_path = os.path.join(TMP_DIR, path)
-    # 
-    # print(command_infer)
-    # subprocess.call(command_infer, shell=True)
-    # 
+            subprocess.call(command, shell=True)
+            command = command_check.format(target=os.path.join(TEST_DIR, target_file))
+            ret += subprocess.check_output(command, shell=True).replace("\n", "") + ","
+    print(ret)
 
 def combine():
     paths = []

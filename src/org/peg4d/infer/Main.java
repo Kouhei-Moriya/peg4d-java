@@ -1,17 +1,17 @@
 package org.peg4d.infer;
 
-import org.peg4d.ParsingContext;
-import org.peg4d.ParsingObject;
-import org.peg4d.ParsingSource;
 import org.peg4d.query.ArgumentsParser;
 
 public class Main {
 	public static void main(String args[]) {
 		Options options = Options.createFromCommandLineArguments(args);
-		System.out.println(options);
+		//System.out.println(options);
 		Engine engine = new Engine(options.getGrammar(), options.isVerbose());
 		Format fmt = null;
-		if (options.getOutputFileName() != null) {
+		if (options.correctness) {
+			engine.calcCorrectness(options.getTarget());
+		}
+		else if (options.getOutputFileName() != null) {
 			fmt = engine.infer(options.getTarget());
 			switch (options.getGenType()) {
 			case PEGJS:
@@ -80,6 +80,8 @@ class Options {
 				s -> argsParser.printHelpBeforeExit(System.out, 0))
 		.addOption("v", "verbose", false, "verbose debug info",
 				s -> newOptions.verbose = true)
+		.addOption("c", "correctness", false, "calculate correctness",
+				s -> newOptions.correctness = true)
 		.addOption("js", "pegjs", false, "set output file type to pegjs",
 				s -> newOptions.genType = GenType.PEGJS)
 		.addOption("g", "grammar", true, "peg definition of target data format", true,
