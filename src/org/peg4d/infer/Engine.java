@@ -27,8 +27,8 @@ public class Engine {
 	private final FormatFactory factory;
 
 	private final double clusterTolerance;
-	private final double maxMass;
-	private final double minCoverage;
+	double maxMass;
+	double minCoverage;
 
 	public Engine(String grammarFileName, boolean verbose) {
 		this.grammar = new GrammarFactory().newGrammar("main", grammarFileName, null);
@@ -55,7 +55,7 @@ public class Engine {
 				successCount++;
 			}
 		}
-		System.out.println((float)successCount / chunks.size());
+		System.out.println((float)successCount / chunks.size() * 100);
 	}
 	
 	public Format infer(String filePath) {
@@ -195,7 +195,8 @@ public class Engine {
 					rmOfRep = tmp;
 				}
 			}
-			if (rmOfRep < (this.maxMass * rep.wholeSize()) && rep.coverage() > this.minCoverage) {
+			if (verbose) System.out.println(rep.toString() + ":" + rmOfRep);
+			if (rmOfRep <= this.maxMass && rep.coverage() >= this.minCoverage) {
 				if (delimGroup != null) {
 					double minor = Math.min(rmOfRet, rmOfRep);
 					if (rmOfRep == minor) delimGroup = group;

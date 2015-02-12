@@ -83,10 +83,30 @@ def combine():
         print(command)
         subprocess.call(command, shell=True)
 
+
+def param_change():
+    command_base = "java -jar nez-0.9.3.jar -g sample/tokenize.p4d -t {target} -o tmp.p4d -mm {mm} -mc {mc}"
+    for path in os.listdir("./infer_test"):
+        full_path = os.path.join("./infer_test", path)
+        if not os.path.isfile(full_path): continue
+        if path.startswith("."): continue
+        print(full_path)
+        ret = ",0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0\n"
+        for mc in frange(0, 1, 0.1):
+            ret += str(mc) + ","
+            for mm in frange(0, 1, 0.1):
+                command = command_base.format(mm=mm, target=full_path, mc=mc)
+                subprocess.call(command, shell=True)
+                size_of_line = sum(1 for line in open("tmp.p4d"))
+                ret += str(size_of_line) + ","
+            ret += "\n"
+        print(ret)
+
 def main():
     #generate_test_files()
-    stat()
+    #stat()
     #combine()
+    param_change()
 
 if __name__ == "__main__":
     main()

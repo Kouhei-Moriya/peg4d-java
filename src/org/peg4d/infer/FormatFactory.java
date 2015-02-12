@@ -111,8 +111,8 @@ public class FormatFactory {
 		ChoiceFormat fmt = new ChoiceFormat(this.newName());
 		if (groupedBranches.size() == 1) {
 			for (Chunk chunk : groupedBranches.get(0)) {
-				fmt.add(this.create(chunk));
-				//fmt.add(this.create(chunk.getText()));
+				//fmt.add(this.create(chunk));
+				fmt.add(this.create(chunk.getText()));
 			}
 		}
 		else {

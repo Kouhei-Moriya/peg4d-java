@@ -98,6 +98,7 @@ public class Chunk {
 			case '[':
 			case '"':
 			case '{':
+			case '(':
 				endMatcher = TokenizedChunk.metaTokenEndMatcherTable.get(String.valueOf(c));
 				break;
 			default:
@@ -183,6 +184,7 @@ class TokenizedChunk extends Chunk {
 				new MetaTokenMatcher('[', ']', true),
 				new MetaTokenMatcher('\"', '\"', true),
 				new MetaTokenMatcher('\'', '\'', true),
+				new MetaTokenMatcher('(', ')', true),
 		};
 		StringBuilder builder = new StringBuilder();
 		for (MetaTokenMatcher matcher : initializeList) {
@@ -252,6 +254,7 @@ class TokenizedChunk extends Chunk {
 				}
 				subChunk.metaTokenList = this.metaTokenList.subList(startIdx, endIdx);
 			}
+			//subChunk.metaTokenList = subChunk.tokenizeForMetaToken();
 			return subChunk;
 		}
 		else {

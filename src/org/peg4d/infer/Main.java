@@ -7,6 +7,8 @@ public class Main {
 		Options options = Options.createFromCommandLineArguments(args);
 		//System.out.println(options);
 		Engine engine = new Engine(options.getGrammar(), options.isVerbose());
+		if (options.minCoverage != -1) engine.minCoverage = options.minCoverage;
+		if (options.maxMass != -1) engine.maxMass = options.maxMass;
 		Format fmt = null;
 		if (options.correctness) {
 			engine.calcCorrectness(options.getTarget());
@@ -66,6 +68,8 @@ class Options {
 	private String target = null;
 	private boolean verbose = false;
 	boolean correctness = false;
+	double maxMass = -1;
+	double minCoverage = -1;
 
 	private String cache = null;
 	
@@ -90,6 +94,10 @@ class Options {
 				s -> newOptions.outputFileName = s.get())
 		.addOption("l", "log", true, "generate statistic log",
 				s -> newOptions.logFileName = s.get())
+		.addOption("mm", "maxmass", true, "assign masMass",
+				s -> newOptions.maxMass = Double.parseDouble(s.get()))
+		.addOption("mc", "mincoverage", true, "assign minCoverage",
+				s -> newOptions.minCoverage = Double.parseDouble((s.get())))
 		.addOption("t", "target", true, "target data file", true,
 				s -> newOptions.target = s.get());
 		try {

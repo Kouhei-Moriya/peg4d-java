@@ -82,12 +82,12 @@ public class Histogram {
 		return idx < this.size() ? this.data.get(idx).tokenFrequency : 0;
 	}
 	
-	public int residualMass(int idx) {
+	public double residualMass(int idx) {
 		int rm = this.wholeSize();
 		for (int i = idx; i >= 0; i--) {
 			rm -= this.getTokenFrequencyI(i);
 		}
-		return rm;
+		return (double)rm / this.wholeSize();
 	}
 	
 	public double coverage() {
